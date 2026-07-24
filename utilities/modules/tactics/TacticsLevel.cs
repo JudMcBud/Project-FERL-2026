@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Game.Modules.Tactics.Level.Participants.TacticsParticipant;
@@ -9,27 +10,93 @@ public partial class TacticsLevel : Node3D
 {
     #region --- Props ---
     [Export]
-    TacticsCameraResource camera = GD.Load<TacticsCameraResource>("");
+    TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
+        "res://utilities/models/view/camera/tactics/camera.tres"
+    );
 
     [Export]
     float cameraBoundaryRadius = 10;
 
     [Export]
-    TacticsControlsResource uiControl = GD.Load<TacticsControlsResource>("");
+    TacticsControlsResource uiControl = GD.Load<TacticsControlsResource>(
+        "res://utilities/models/view/control/tactics/control.tres"
+    );
 
     TacticsParticipant participant;
 
-    // TacticsPlayer player = null;
+    TacticsPlayer player = null;
 
-    // TacticsOpponent opponent;
+    TacticsOpponent opponent;
 
-    // TacticsArena arena;
+    TacticsArena arena;
 
     int turnStage = 0;
     #endregion
+    #region --- Processing ---
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
+    public override void _Ready()
+    {
+        if (uiControl == null)
+            GD.PushError("TacticsControls needs a ControlResource from /utilities/models");
+        if (camera == null)
+            GD.PushError("TacticaCamera needs a CameraResource from /utilities/models");
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+        participant = GetNode<TacticsParticipant>("TacticsParticipant");
+        player = GetNode<TacticsPlayer>("TacticsParticipant/TacticsPlayer");
+        opponent = GetNode<TacticsOpponent>("TacticsParticipant/TacticsOpponent");
+        arena = GetNode<TacticsArena>("TacticsArena");
+
+        arena.ConfigureTiles();
+        participant.Configure(camera, uiControl);
+
+        if (camera.boundaryRadius != cameraBoundaryRadius)
+            camera.boundaryRadius = cameraBoundaryRadius;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        switch (turnStage)
+        {
+            case 0:
+                initTurn();
+                break;
+
+            case 1:
+                handleTurn(delta);
+                break;
+        }
+    }
+
+    #endregion
+
+    #region --- Methods ---
+    private void initTurn()
+    {
+        if (participant.IsConfigured(player) && participant.IsConfigured(opponent))
+            turnStage = 1;
+    }
+
+    private void handleTurn(double delta)
+    {
+        //Debug Log goes here
+
+        if (participant.CanAct(player))
+        {
+            if (!participant.IsConfigured(player))
+                participant.Configure(camera, uiControl);
+            participant.Act(delta, true, player);
+        }
+        else if (participant.CanAct(opponent))
+        {
+            if (!participant.IsConfigured(opponent))
+                participant.Configure(camera, uiControl);
+            participant.Act(delta, false, opponent);
+        }
+        else
+        {
+            player.ResetTurn(player);
+            opponent.ResetTurn(opponent);
+        }
+    }
+    #endregion
 }
