@@ -10,17 +10,13 @@ public partial class TacticsLevel : Node3D
 {
     #region --- Props ---
     [Export]
-    TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
-        "res://utilities/models/view/camera/tactics/camera.tres"
-    );
+    TacticsCameraResource camera;
 
     [Export]
     float cameraBoundaryRadius = 10;
 
     [Export]
-    TacticsControlsResource uiControl = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    TacticsControlsResource uiControl;
 
     TacticsParticipant participant;
 
@@ -36,8 +32,15 @@ public partial class TacticsLevel : Node3D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        uiControl = GD.Load<TacticsControlsResource>(
+            "res://utilities/models/view/control/tactics/control.tres"
+        );
         if (uiControl == null)
             GD.PushError("TacticsControls needs a ControlResource from /utilities/models");
+
+        camera = GD.Load<TacticsCameraResource>(
+            "res://utilities/models/view/camera/tactics/camera.tres"
+        );
         if (camera == null)
             GD.PushError("TacticaCamera needs a CameraResource from /utilities/models");
 
