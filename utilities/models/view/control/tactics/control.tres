@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TacticsControlsResource" format=3 uid="uid://2cq6msemoms2"]
+
+[ext_resource type="Script" uid="uid://xrtapvimrwnr" path="res://utilities/models/view/control/tactics/TacticsControlsResource.cs" id="1_j5q75"]
+
+[resource]
+script = ExtResource("1_j5q75")
+metadata/_custom_type_script = "uid://xrtapvimrwnr"

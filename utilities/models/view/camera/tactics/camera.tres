@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TacticsCameraResource" format=3 uid="uid://d13l15ikv0md8"]
+
+[ext_resource type="Script" uid="uid://cx0ajut1ueqkb" path="res://utilities/models/view/camera/tactics/TacticsCameraResource.cs" id="1_bdcfc"]
+
+[resource]
+script = ExtResource("1_bdcfc")
+metadata/_custom_type_script = "uid://cx0ajut1ueqkb"
