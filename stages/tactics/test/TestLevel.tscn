@@ -1,6 +1,28 @@
 [gd_scene format=3 uid="uid://hl65nwdmkasj"]
 
 [ext_resource type="Script" uid="uid://bey4i3gra5xep" path="res://utilities/modules/tactics/TacticsLevel.cs" id="1_lhp7h"]
+[ext_resource type="Script" uid="uid://bkmr4j28r61tc" path="res://utilities/modules/tactics/level/arena/TacticsArena.cs" id="2_51acx"]
+[ext_resource type="Script" uid="uid://dtpb1o6r1kgsv" path="res://utilities/modules/tactics/level/participants/TacticsParticipant.cs" id="3_vwx8t"]
+[ext_resource type="Script" uid="uid://0dgvrl3s1eur" path="res://utilities/modules/tactics/level/participants/player/TacticsPlayer.cs" id="4_p3snc"]
+[ext_resource type="Script" uid="uid://dbtsdtvib6685" path="res://utilities/modules/tactics/level/participants/opponent/TacticsOpponent.cs" id="5_8eixq"]
 
 [node name="TacticsLevel" type="Node3D" unique_id=426331364]
 script = ExtResource("1_lhp7h")
+camera = null
+cameraBoundaryRadius = null
+uiControl = null
+
+[node name="TacticsArena" type="Node3D" parent="." unique_id=2000317264]
+unique_name_in_owner = true
+script = ExtResource("2_51acx")
+
+[node name="TacticsParticipant" type="Node3D" parent="." unique_id=684719834]
+script = ExtResource("3_vwx8t")
+
+[node name="TacticsPlayer" type="Node3D" parent="TacticsParticipant" unique_id=200364861]
+unique_name_in_owner = true
+script = ExtResource("4_p3snc")
+
+[node name="TacticsOpponent" type="Node3D" parent="TacticsParticipant" unique_id=1566975484]
+unique_name_in_owner = true
+script = ExtResource("5_8eixq")
