@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://hl65nwdmkasj"]
+
+[ext_resource type="Script" uid="uid://bey4i3gra5xep" path="res://utilities/modules/tactics/TacticsLevel.cs" id="1_lhp7h"]
+
+[node name="TacticsLevel" type="Node3D" unique_id=426331364]
+script = ExtResource("1_lhp7h")
