@@ -8,42 +8,66 @@ namespace Game.Modules.Tactics.Level.Participants.TacticsParticipant;
 
 public partial class TacticsParticipant : Node3D
 {
-    // [Export]
-    // TacticsParticipantResource res;
+    [Export]
+    private TacticsParticipantResource resource = GD.Load<TacticsParticipantResource>(
+        "res://utilities/models/world/combat/participant/participant.tres"
+    );
 
     [Export]
-    private TacticsCameraResource camera;
+    private TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
+        "res://utilities/models/view/camera/tactics/camera.tres"
+    );
 
     [Export]
-    private TacticsControlsResource controls;
+    private TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
+        "res://utilities/models/view/control/tactics/control.tres"
+    );
+
+    private TacticsParticipantService service;
+    private TacticsArena arena;
+    private TacticsPlayer player;
+    private TacticsOpponent opponent;
 
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
-
-    public void Configure(TacticsCameraResource camera, TacticsControlsResource controls)
+    public override void _Ready()
     {
-        //TODO: Finish method
+        // service = TacticsParticipantResource.new(resource, camera, controls);
+        // service.Setup(self);
+        // resource.SkipTurn += OnSkipTurn;
+        arena = GetNode<TacticsArena>("%TacticsArena");
+        player = GetNode<TacticsPlayer>("%TacticsPlayer");
+        opponent = GetNode<TacticsOpponent>("%TacticsOpponent");
+    }
+
+    public void Act(double delta, bool isPlayer, Node3D parent)
+    {
+        // service.Act(delta, isPlayer, parent, self);
+    }
+
+    public void Configure(Resource myCamera, Resource myControls)
+    {
+        // service.Configure(myCamera, myControls);
     }
 
     public bool IsConfigured(Node3D parent)
     {
-        //TODO: Finish method
+        //return service.IsConfigured(parent);
         return true;
     }
 
     public bool CanAct(Node3D parent)
     {
-        //TODO: Finish method
+        //return service.CanAct(parent);
         return true;
-    }
-
-    public void Act(double delta, bool isPlayer, Node3D parent)
-    {
-        //TODO: Finish method
     }
 
     public void ResetTurn(Node3D parent)
     {
-        //TODO: Finish method
+        //service.ResetTurn(parent);
+    }
+
+    private void OnSkipTurn()
+    {
+        // service.SkipTurn(player);
     }
 }
