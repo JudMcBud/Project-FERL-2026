@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TacticsParticipantResource" format=3 uid="uid://56hqeulqoi27"]
+
+[ext_resource type="Script" uid="uid://b5edgse4syk43" path="res://utilities/models/world/combat/participant/TacticsParticipantResource.cs" id="1_sjnyo"]
+
+[resource]
+script = ExtResource("1_sjnyo")
+metadata/_custom_type_script = "uid://b5edgse4syk43"

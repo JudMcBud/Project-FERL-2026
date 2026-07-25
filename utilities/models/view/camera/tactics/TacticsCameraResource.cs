@@ -129,17 +129,17 @@ public partial class TacticsCameraResource : Resource
     #endregion
 
     #region Signals
-    private void MoveCamera(float horizontal, float vertical, bool joystick, float delta)
+    private void MoveCameraHandler(float horizontal, float vertical, bool joystick, float delta)
     {
         EmitSignal(SignalName.MoveCamera, horizontal, vertical, joystick, delta);
     }
 
-    private void RotateCamera(float delta, float twist = 0.0f)
+    private void RotateCameraHandler(float delta, float twist = 0.0f)
     {
         EmitSignal(SignalName.RotateCamera, delta, twist);
     }
 
-    private void FreeLook(float delta)
+    private void FreeLookHandler(float delta)
     {
         EmitSignal(SignalName.FreeLook, delta);
     }
