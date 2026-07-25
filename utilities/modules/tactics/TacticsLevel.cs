@@ -10,21 +10,25 @@ public partial class TacticsLevel : Node3D
 {
     #region --- Props ---
     [Export]
-    TacticsCameraResource camera;
+    private TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
+        "res://utilities/models/view/camera/tactics/camera.tres"
+    );
 
     [Export]
-    float cameraBoundaryRadius = 10;
+    private float cameraBoundaryRadius = 10;
 
     [Export]
-    TacticsControlsResource uiControl;
+    private TacticsControlsResource uiControl = GD.Load<TacticsControlsResource>(
+        "res://utilities/models/view/control/tactics/control.tres"
+    );
 
-    TacticsParticipant participant;
+    private TacticsParticipant participant;
 
-    TacticsPlayer player = null;
+    private TacticsPlayer player = null;
 
-    TacticsOpponent opponent;
+    private TacticsOpponent opponent;
 
-    TacticsArena arena;
+    private TacticsArena arena;
 
     int turnStage = 0;
     #endregion

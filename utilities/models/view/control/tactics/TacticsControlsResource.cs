@@ -8,32 +8,32 @@ namespace Game.Models.View.Control.Tactics.TacticsControlsResource;
 public partial class TacticsControlsResource : Resource
 {
     [Signal]
-    public delegate void SetActionsMenuVisibilityEventHandler(bool v, TacticsPawn pawn);
+    private delegate void SetActionsMenuVisibilityEventHandler(bool v, TacticsPawn pawn);
 
     [Signal]
-    public delegate void MoveCameraEventHandler(float delta);
+    private delegate void MoveCameraEventHandler(float delta);
 
     [Signal]
-    public delegate void SelectPawnEventHandler(TacticsPlayer player);
+    private delegate void SelectPawnEventHandler(TacticsPlayer player);
 
     [Signal]
-    public delegate void SelectPawnToAttackEventHandler();
+    private delegate void SelectPawnToAttackEventHandler();
 
     [Signal]
-    public delegate void SelectNewLocationEventHandler();
+    private delegate void SelectNewLocationEventHandler();
 
     [Signal]
-    public delegate void SetCursorShapeToMoveEventHandler();
+    private delegate void SetCursorShapeToMoveEventHandler();
 
     [Signal]
-    public delegate void SetCursorShapeToArrowEventHandler();
+    private delegate void SetCursorShapeToArrowEventHandler();
 
     [Export]
-    public bool isJoystick;
+    private bool isJoystick;
 
     // Should probably phase this out at the end
     [Export]
-    public bool inputHintsFolded;
+    private bool inputHintsFolded;
 
     public Dictionary<string, string> actions = new Dictionary<string, string>
     {
@@ -44,37 +44,37 @@ public partial class TacticsControlsResource : Resource
         { "DebugNextTurn", "PLayerWantsToSkipTurn" },
     };
 
-    private void SetActionsMenuVisibility(bool v, TacticsPawn pawn)
+    private void SetActionsMenuVisibilityHandler(bool v, TacticsPawn pawn)
     {
         EmitSignal(SignalName.SetActionsMenuVisibility, v, pawn);
     }
 
-    private void MoveCamera(float delta)
+    private void MoveCameraHandler(float delta)
     {
         EmitSignal(SignalName.MoveCamera, delta);
     }
 
-    private void SelectPawn(TacticsPlayer player)
+    private void SelectPawnHandler(TacticsPlayer player)
     {
         EmitSignal(SignalName.SelectPawn, player);
     }
 
-    private void SelectPawnToAttack()
+    private void SelectPawnToAttackHandler()
     {
         EmitSignal(SignalName.SelectPawnToAttack);
     }
 
-    private void SelectNewLocation()
+    private void SelectNewLocationHandler()
     {
         EmitSignal(SignalName.SelectNewLocation);
     }
 
-    private void SetCursorShapeToMove()
+    private void SetCursorShapeToMoveHandler()
     {
         EmitSignal(SignalName.SetCursorShapeToMove);
     }
 
-    private void SetCursorShapeToArrow()
+    private void SetCursorShapeToArrowHandler()
     {
         EmitSignal(SignalName.SetCursorShapeToArrow);
     }
