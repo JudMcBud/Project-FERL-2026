@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://cv3xt4upevh0r"]
 
+[ext_resource type="Script" uid="uid://d4ih6ln2d1302" path="res://utilities/modules/tactics/level/pawn/TacticsPawn.cs" id="1_sw154"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_egm1s"]
+height = 2.15
+
 [node name="Pawn" type="CharacterBody3D" unique_id=531513967]
+script = ExtResource("1_sw154")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1889137062]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_egm1s")
