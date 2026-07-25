@@ -61,9 +61,26 @@ public partial class TacticsParticipantService : RefCounted
         controls = myControls;
     }
 
+    //TODO: Come back and configure this when IsPawnConfigured() is defined
     public bool IsConfigured(Node3D parent)
     {
         // return parent.IsPawnConfigured();
         return true;
+    }
+
+    public bool CanAct(Node3D parent)
+    {
+        //return parent.CanAct();
+        return true;
+    }
+
+    public void ResetTurn(Node3D parent)
+    {
+        // turnService.ResetTurn(parent);
+    }
+
+    public void SkipTurn(TacticsPlayer player)
+    {
+        // turnService.SkipTurn(player);
     }
 }
