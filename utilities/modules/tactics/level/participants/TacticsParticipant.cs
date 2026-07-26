@@ -23,7 +23,7 @@ public partial class TacticsParticipant : Node3D
         "res://utilities/models/view/control/tactics/control.tres"
     );
 
-    private TacticsParticipantService service;
+    public TacticsParticipantService service;
     private TacticsArena arena;
     private TacticsPlayer player;
     private TacticsOpponent opponent;

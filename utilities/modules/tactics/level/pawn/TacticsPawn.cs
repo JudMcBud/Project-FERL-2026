@@ -42,4 +42,13 @@ public partial class TacticsPawn : CharacterBody3D
         Velocity = velocity;
         MoveAndSlide();
     }
+
+    public bool CanAct()
+    {
+        return true;
+    }
+
+    public void ResetTurn() { }
+
+    public void EndTurn() { }
 }

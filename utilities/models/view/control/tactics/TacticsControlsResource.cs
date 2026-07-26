@@ -44,37 +44,37 @@ public partial class TacticsControlsResource : Resource
         { "DebugNextTurn", "PLayerWantsToSkipTurn" },
     };
 
-    private void SetActionsMenuVisibilityHandler(bool v, TacticsPawn pawn)
+    public void SetActionsMenuVisibilityHandler(bool v, TacticsPawn pawn)
     {
         EmitSignal(SignalName.SetActionsMenuVisibility, v, pawn);
     }
 
-    private void MoveCameraHandler(float delta)
+    public void MoveCameraHandler(float delta)
     {
         EmitSignal(SignalName.MoveCamera, delta);
     }
 
-    private void SelectPawnHandler(TacticsPlayer player)
+    public void SelectPawnHandler(TacticsPlayer player)
     {
         EmitSignal(SignalName.SelectPawn, player);
     }
 
-    private void SelectPawnToAttackHandler()
+    public void SelectPawnToAttackHandler()
     {
         EmitSignal(SignalName.SelectPawnToAttack);
     }
 
-    private void SelectNewLocationHandler()
+    public void SelectNewLocationHandler()
     {
         EmitSignal(SignalName.SelectNewLocation);
     }
 
-    private void SetCursorShapeToMoveHandler()
+    public void SetCursorShapeToMoveHandler()
     {
         EmitSignal(SignalName.SetCursorShapeToMove);
     }
 
-    private void SetCursorShapeToArrowHandler()
+    public void SetCursorShapeToArrowHandler()
     {
         EmitSignal(SignalName.SetCursorShapeToArrow);
     }
