@@ -21,8 +21,8 @@ public partial class TacticsParticipantService : RefCounted
         resource = _resource;
         camera = _camera;
         controls = _controls;
-        // turnService = TacticsParticipantTurnService.new(resource, camera, controls);
-        // combatService = TacticsParticipantCombatService.new(resource, camera, controls);
+        turnService = new TacticsParticipantTurnService(resource, camera, controls);
+        combatService = new TacticsParticipantCombatService(resource, camera, controls);
     }
 
     public void Setup(TacticsParticipant _participant)
@@ -46,12 +46,12 @@ public partial class TacticsParticipantService : RefCounted
         if (isPlayer)
         {
             TacticsPlayer player = parent as TacticsPlayer;
-            // turnService.HandlePlayerTurn(delta, player, participant);
+            turnService.HandlePlayerTurn(delta, player, participant);
         }
         else
         {
             TacticsOpponent opponent = parent as TacticsOpponent;
-            // turnService.HandleOpponentTurn(delta, opponent, participant);
+            turnService.HandleOpponentTurn(delta, opponent, participant);
         }
     }
 
@@ -61,26 +61,25 @@ public partial class TacticsParticipantService : RefCounted
         controls = myControls;
     }
 
-    //TODO: Come back and configure this when IsPawnConfigured() is defined
     public bool IsConfigured(Node3D parent)
     {
-        // return parent.IsPawnConfigured();
-        return true;
+        TacticsParticipant participant = parent as TacticsParticipant;
+        return participant.IsConfigured(parent);
     }
 
     public bool CanAct(Node3D parent)
     {
-        //return parent.CanAct();
-        return true;
+        TacticsParticipant participant = parent as TacticsParticipant;
+        return participant.CanAct(parent);
     }
 
     public void ResetTurn(Node3D parent)
     {
-        // turnService.ResetTurn(parent);
+        turnService.ResetTurn(parent);
     }
 
     public void SkipTurn(TacticsPlayer player)
     {
-        // turnService.SkipTurn(player);
+        turnService.SkipTurn(player);
     }
 }

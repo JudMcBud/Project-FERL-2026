@@ -28,7 +28,6 @@ public partial class TacticsParticipant : Node3D
     private TacticsPlayer player;
     private TacticsOpponent opponent;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         // service = TacticsParticipantResource.new(resource, camera, controls);

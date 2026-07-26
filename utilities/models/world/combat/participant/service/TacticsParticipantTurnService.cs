@@ -12,7 +12,7 @@ public partial class TacticsParticipantTurnService : RefCounted
     private TacticsCameraResource camera;
     private TacticsControlsResource controls;
 
-    public void Init(
+    public TacticsParticipantTurnService(
         TacticsParticipantResource _resource,
         TacticsCameraResource _camera,
         TacticsControlsResource _controls
