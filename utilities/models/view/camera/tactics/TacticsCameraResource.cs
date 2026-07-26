@@ -38,7 +38,7 @@ public partial class TacticsCameraResource : Resource
 
     private Vector3 targetVelocity = Vector3.Zero;
 
-    private Node3D target = null;
+    public Node3D target = null;
     #endregion
 
     #region Zoom

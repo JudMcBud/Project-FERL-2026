@@ -10,7 +10,7 @@ public partial class TacticsParticipantService : RefCounted
     private TacticsCameraResource camera;
     private TacticsControlsResource controls;
     private TacticsParticipantTurnService turnService;
-    private TacticsParticipantCombatService combatService;
+    public TacticsParticipantCombatService combatService;
 
     public void Init(
         TacticsParticipantResource _resource,
