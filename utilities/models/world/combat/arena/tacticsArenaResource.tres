@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TacticsArenaResource" format=3 uid="uid://boseiifejvpjh"]
+
+[ext_resource type="Script" uid="uid://eqg74k43vhxg" path="res://utilities/models/world/combat/arena/TacticsArenaResource.cs" id="1_gc83e"]
+
+[resource]
+script = ExtResource("1_gc83e")
+metadata/_custom_type_script = "uid://eqg74k43vhxg"
