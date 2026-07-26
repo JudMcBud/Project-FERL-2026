@@ -11,7 +11,7 @@ public partial class TacticsControlsResource : Resource
     private delegate void SetActionsMenuVisibilityEventHandler(bool v, TacticsPawn pawn);
 
     [Signal]
-    private delegate void MoveCameraEventHandler(float delta);
+    private delegate void MoveCameraEventHandler(double delta);
 
     [Signal]
     private delegate void SelectPawnEventHandler(TacticsPlayer player);
@@ -49,7 +49,7 @@ public partial class TacticsControlsResource : Resource
         EmitSignal(SignalName.SetActionsMenuVisibility, v, pawn);
     }
 
-    public void MoveCameraHandler(float delta)
+    public void MoveCameraHandler(double delta)
     {
         EmitSignal(SignalName.MoveCamera, delta);
     }

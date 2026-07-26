@@ -23,7 +23,7 @@ public partial class TacticsParticipantTurnService : RefCounted
         controls = _controls;
     }
 
-    public void HandlePlayerTurn(float delta, TacticsPlayer player, TacticsParticipant participant)
+    public void HandlePlayerTurn(double delta, TacticsPlayer player, TacticsParticipant participant)
     {
         if (resource.turnJustStarted)
         {
@@ -71,7 +71,7 @@ public partial class TacticsParticipantTurnService : RefCounted
     }
 
     public void HandleOpponentTurn(
-        float delta,
+        double delta,
         TacticsOpponent opponent,
         TacticsParticipant participant
     )
