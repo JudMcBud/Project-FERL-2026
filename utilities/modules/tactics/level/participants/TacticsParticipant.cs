@@ -30,9 +30,9 @@ public partial class TacticsParticipant : Node3D
 
     public override void _Ready()
     {
-        // service = TacticsParticipantResource.new(resource, camera, controls);
-        // service.Setup(self);
-        // resource.SkipTurn += OnSkipTurn;
+        service = new TacticsParticipantService(resource, camera, controls);
+        service.Setup(this);
+        resource.SkipTurn += OnSkipTurn;
         arena = GetNode<TacticsArena>("%TacticsArena");
         player = GetNode<TacticsPlayer>("%TacticsPlayer");
         opponent = GetNode<TacticsOpponent>("%TacticsOpponent");
@@ -40,33 +40,31 @@ public partial class TacticsParticipant : Node3D
 
     public void Act(double delta, bool isPlayer, Node3D parent)
     {
-        // service.Act(delta, isPlayer, parent, self);
+        service.Act(delta, isPlayer, parent, this);
     }
 
-    public void Configure(Resource myCamera, Resource myControls)
+    public void Configure(TacticsCameraResource myCamera, TacticsControlsResource myControls)
     {
-        // service.Configure(myCamera, myControls);
+        service.Configure(myCamera, myControls);
     }
 
     public bool IsConfigured(Node3D parent)
     {
-        //return service.IsConfigured(parent);
-        return true;
+        return service.IsConfigured(parent);
     }
 
     public bool CanAct(Node3D parent)
     {
-        //return service.CanAct(parent);
-        return true;
+        return service.CanAct(parent);
     }
 
     public void ResetTurn(Node3D parent)
     {
-        //service.ResetTurn(parent);
+        service.ResetTurn(parent);
     }
 
     private void OnSkipTurn()
     {
-        // service.SkipTurn(player);
+        service.SkipTurn(player);
     }
 }

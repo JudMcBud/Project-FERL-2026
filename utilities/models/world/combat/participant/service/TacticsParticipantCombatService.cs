@@ -11,5 +11,5 @@ public partial class TacticsParticipantCombatService : RefCounted
         TacticsControlsResource controls
     ) { }
 
-    public void AttackPawn(float delta, bool isPlayer) { }
+    public void AttackPawn(double delta, bool isPlayer) { }
 }
