@@ -12,7 +12,7 @@ public partial class TacticsParticipantService : RefCounted
     private TacticsParticipantTurnService turnService;
     public TacticsParticipantCombatService combatService;
 
-    public void Init(
+    public TacticsParticipantService(
         TacticsParticipantResource _resource,
         TacticsCameraResource _camera,
         TacticsControlsResource _controls
@@ -41,7 +41,7 @@ public partial class TacticsParticipantService : RefCounted
             );
     }
 
-    public void Act(float delta, bool isPlayer, Node3D parent, TacticsParticipant participant)
+    public void Act(double delta, bool isPlayer, Node3D parent, TacticsParticipant participant)
     {
         if (isPlayer)
         {
