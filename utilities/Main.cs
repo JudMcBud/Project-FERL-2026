@@ -37,6 +37,11 @@ public partial class Main : Node3D
         GetNode<CenterContainer>("UI/MapSelector").Visible = false;
     }
 
-    private void UnloadLevel() { }
+    private void UnloadLevel()
+    {
+        if (IsInstanceValid(levelInstance))
+            levelInstance.QueueFree();
+        levelInstance = null;
+    }
     #endregion
 }

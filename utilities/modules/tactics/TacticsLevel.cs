@@ -33,7 +33,6 @@ public partial class TacticsLevel : Node3D
     int turnStage = 0;
     #endregion
     #region --- Processing ---
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         uiControl = GD.Load<TacticsControlsResource>(

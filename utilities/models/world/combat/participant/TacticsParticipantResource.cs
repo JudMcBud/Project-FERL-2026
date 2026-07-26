@@ -5,6 +5,9 @@ using Godot;
 [GlobalClass]
 public partial class TacticsParticipantResource : Resource
 {
+    [Signal]
+    public delegate void SkipTurnEventHandler();
+
     #region Stage Selection
     public enum Stage
     {
@@ -22,6 +25,14 @@ public partial class TacticsParticipantResource : Resource
     #endregion
 
     public TacticsPawn currentPawn = null;
+    public TacticsPawn attackablePawn = null;
     public Node targets = null;
+
+    public bool displayOpponentStats = false;
     public bool turnJustStarted = true;
+
+    public void HandleSkipTurn()
+    {
+        EmitSignal(SignalName.SkipTurn);
+    }
 }
