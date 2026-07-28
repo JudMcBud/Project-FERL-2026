@@ -8,6 +8,8 @@ public partial class TacticsPawn : CharacterBody3D
     public const float Speed = 5.0f;
     public const float JumpVelocity = 4.5f;
 
+    public Stats stats;
+
     public override void _PhysicsProcess(double delta)
     {
         Vector3 velocity = Velocity;
@@ -41,6 +43,11 @@ public partial class TacticsPawn : CharacterBody3D
 
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    public TacticsTile GetTile()
+    {
+        return new TacticsTile();
     }
 
     public bool CanAct()
