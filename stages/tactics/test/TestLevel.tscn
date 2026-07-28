@@ -18,11 +18,20 @@ script = ExtResource("2_51acx")
 
 [node name="TacticsParticipant" type="Node3D" parent="." unique_id=684719834]
 script = ExtResource("3_vwx8t")
+resource = null
+camera = null
+controls = null
 
 [node name="TacticsPlayer" type="Node3D" parent="TacticsParticipant" unique_id=200364861]
 unique_name_in_owner = true
 script = ExtResource("4_p3snc")
+resource = null
+camera = null
+controls = null
 
 [node name="TacticsOpponent" type="Node3D" parent="TacticsParticipant" unique_id=1566975484]
 unique_name_in_owner = true
 script = ExtResource("5_8eixq")
+resource = null
+camera = null
+controls = null
