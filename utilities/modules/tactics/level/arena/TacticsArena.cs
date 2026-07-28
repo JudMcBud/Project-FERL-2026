@@ -40,7 +40,7 @@ public partial class TacticsArena : Node3D
         service.ProcessSurroundingTiles(rootTile, height, alliesOnMap);
     }
 
-    public List<TacticsTile> GetPathfindingTilestack(TacticsTile to)
+    public List<TacticsTile> GetPathfindingTileStack(TacticsTile to)
     {
         return service.GetPathfindingTileStack(to);
     }
@@ -55,9 +55,9 @@ public partial class TacticsArena : Node3D
         return service.GetWeakestAttackablePawn(pawnList);
     }
 
-    public void MarkHoveTile(TacticsTile tile)
+    public void MarkHoverTile(TacticsTile tile)
     {
-        service.MarkHoveTile(tile);
+        service.MarkHoverTile(tile);
     }
 
     public void MarkReachableTiles(TacticsTile root)
