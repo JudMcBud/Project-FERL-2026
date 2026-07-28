@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://db0sepll4kxev"]
+
+[ext_resource type="Script" uid="uid://dngnhj2mvb1re" path="res://utilities/modules/tactics/level/arena/tile/raycast/TacticsTileRaycast.cs" id="1_fmosb"]
+
+[node name="RayCasting" type="Node3D" unique_id=481901480]
+script = ExtResource("1_fmosb")
+
+[node name="Neighbors" type="Node3D" parent="." unique_id=20401401]
+
+[node name="E" type="RayCast3D" parent="Neighbors" unique_id=34509728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+target_position = Vector3(0, -20, 0)
+
+[node name="W" type="RayCast3D" parent="Neighbors" unique_id=835276940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+target_position = Vector3(0, -20, 0)
+
+[node name="S" type="RayCast3D" parent="Neighbors" unique_id=120634076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+target_position = Vector3(0, -20, 0)
+
+[node name="N" type="RayCast3D" parent="Neighbors" unique_id=832013544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+target_position = Vector3(0, -20, 0)
+
+[node name="Above" type="RayCast3D" parent="." unique_id=668044453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
