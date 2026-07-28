@@ -57,12 +57,12 @@ public partial class TacticsArena : Node3D
 
     public void MarkHoverTile(TacticsTile tile)
     {
-        service.MarkHoverTile(tile);
+        service.MarkHoverTile(this, tile);
     }
 
-    public void MarkReachableTiles(TacticsTile root)
+    public void MarkReachableTiles(TacticsTile root, float distance)
     {
-        service.MarkReachableTiles(root);
+        service.MarkReachableTiles(this, root, distance);
     }
 
     public void MarkAttackableTiles(TacticsTile root, float distance)
