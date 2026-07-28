@@ -36,7 +36,7 @@ public partial class TacticsArenaService : RefCounted
     {
         foreach (TacticsTile _t in arena.GetNode("Tiles").GetChildren())
         {
-            _t.ResetMarker();
+            _t.ResetMarkers();
         }
     }
 
