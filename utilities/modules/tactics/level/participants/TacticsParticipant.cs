@@ -4,7 +4,7 @@ using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Godot;
 
-namespace Game.Modules.Tactics.Level.Participants.TacticsParticipant;
+namespace Game.Models.World.Combat.Participants.TacticsParticipant;
 
 public partial class TacticsParticipant : Node3D
 {

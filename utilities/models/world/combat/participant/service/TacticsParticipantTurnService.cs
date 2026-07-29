@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
-using Game.Modules.Tactics.Level.Participants.TacticsParticipant;
+using Game.Models.World.Combat.Participants.TacticsParticipant;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
 

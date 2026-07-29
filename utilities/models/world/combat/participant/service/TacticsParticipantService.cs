@@ -1,7 +1,7 @@
 using System;
 using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
-using Game.Modules.Tactics.Level.Participants.TacticsParticipant;
+using Game.Models.World.Combat.Participants.TacticsParticipant;
 using Godot;
 
 public partial class TacticsParticipantService : RefCounted
