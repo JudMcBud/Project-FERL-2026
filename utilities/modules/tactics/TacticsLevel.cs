@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
-using Game.Modules.Tactics.Level.Participants.TacticsParticipant;
+using Game.Models.World.Combat.Participants.TacticsParticipant;
 using Godot;
 
 namespace Game.Stages.TacticsLevel;

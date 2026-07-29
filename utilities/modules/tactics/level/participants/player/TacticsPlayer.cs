@@ -1,5 +1,5 @@
 using System;
-using Game.Modules.Tactics.Level.Participants.TacticsParticipant;
+using Game.Models.World.Combat.Participants.TacticsParticipant;
 using Godot;
 
 public partial class TacticsPlayer : TacticsParticipant
