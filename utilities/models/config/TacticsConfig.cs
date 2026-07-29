@@ -1,28 +1,48 @@
 using System;
+using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 
 namespace Game.Models.Config.TacticsConfig;
 
 public partial class TacticsConfig : Node3D
 {
+    #region --- Props ---
+    private static Dictionary<string, string> color = new Dictionary<string, string>
+    {
+        { "white", "FFFFFF3F" },
+        { "blueCola", "008fdbBF" },
+        { "blueBolt", "0aa9ffBF" },
+        { "rossoCorsa", "d10000BF" },
+        { "coralRed", "ff4242BF" },
+    };
     public static Dictionary<string, StandardMaterial3D> matColor = new Dictionary<
         string,
         StandardMaterial3D
     >
     {
-        { "hover", CreateMaterial(Convert.ToString(Colors.White)) },
-        { "reachable", CreateMaterial(Convert.ToString(Colors.MidnightBlue)) },
-        { "hoverReachable", CreateMaterial(Convert.ToString(Colors.LightSkyBlue)) },
-        { "attackable", CreateMaterial(Convert.ToString(Colors.DarkRed)) },
-        { "hoverAttackable", CreateMaterial(Convert.ToString(Colors.Tomato)) },
+        { "hover", CreateMaterial(color["white"]) },
+        { "reachable", CreateMaterial(color["blueCola"]) },
+        { "hoverReachable", CreateMaterial(color["blueBolt"]) },
+        { "attackable", CreateMaterial(color["rossoCorsa"]) },
+        { "hoverAttackable", CreateMaterial(color["coralRed"]) },
     };
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
+    public static Dictionary<string, int> pawn = new Dictionary<string, int>
+    {
+        { "baseWalkSpeed", 8 },
+        { "animationFrame", 1 },
+        { "minHeightToJump", 1 },
+        { "gravityStrength", 6 },
+        { "minTimeForAttack", 1 },
+    };
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public static Dictionary<string, int> view = new Dictionary<string, int>
+    {
+        { "defaultTCaMZoom", 30 },
+    };
+
+    public static List<string> uiElem = ["%Actions", "%Hints"];
+    #endregion
 
     private static StandardMaterial3D CreateMaterial(
         Variant colorHex,
