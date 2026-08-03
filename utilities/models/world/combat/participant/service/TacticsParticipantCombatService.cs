@@ -26,6 +26,24 @@ public partial class TacticsParticipantCombatService : RefCounted
         {
             resource.currentPawn.resource.canAttack = false;
         }
-        else { }
+        else
+        {
+            if (!resource.currentPawn.AttackTargetPawn(resource.attackablePawn, delta))
+                return;
+            controls.SetActionsMenuVisibilityHandler(false, resource.attackablePawn);
+            camera.target = resource.currentPawn;
+        }
+
+        resource.attackablePawn = null;
+        resource.displayOpponentStats = false;
+
+        if (!resource.currentPawn.CanAct() || !isPlayer)
+        {
+            resource.stage = TacticsParticipantResource.Stage.SelectPawn;
+        }
+        else if (resource.currentPawn.CanAct() && isPlayer)
+        {
+            resource.stage = TacticsParticipantResource.Stage.ShowActions;
+        }
     }
 }

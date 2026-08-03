@@ -59,4 +59,9 @@ public partial class TacticsPawn : CharacterBody3D
     public void ResetTurn() { }
 
     public void EndTurn() { }
+
+    public bool AttackTargetPawn(TacticsPawn targetPawn, double delta)
+    {
+        return true;
+    }
 }
