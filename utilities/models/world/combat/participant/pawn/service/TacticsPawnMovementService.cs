@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Resources;
+using Game.Models.World.Utilities.CalcVector;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
 
@@ -55,19 +56,70 @@ public partial class TacticsPawnMovementService : RefCounted
     {
         LookAtDirection(pawn, pawn.resource.moveDirection);
         Vector3 _pVelocity = CalculateVelocity(pawn, delta);
+        float _currentSpeed = CalculateSpeed(pawn);
 
-        if (pawn.resource.moveDirection.Y < -TacticsPawnResource.MinHeightToJump)
-        {
-            TacticsTile _firstTileInStack = pawn.resource.pathfindingTilestack[0];
-        }
+        pawn.Velocity = _pVelocity * _currentSpeed;
+        pawn.UpDirection = Vector3.Up;
+        pawn.MoveAndSlide();
     }
 
     public Vector3 CalculateVelocity(TacticsPawn pawn, double delta)
     {
-        return new Vector3();
+        Vector3 _pVelocity = pawn.resource.moveDirection.Normalized();
+
+        if (pawn.resource.moveDirection.Y < -TacticsPawnResource.MinHeightToJump)
+        {
+            TacticsTile _firstTileInStack = pawn.resource.pathfindingTilestack[0];
+            if (
+                CalcVector.DistanceWithoutY(_firstTileInStack.GlobalPosition, pawn.GlobalPosition)
+                <= 0.2
+            )
+            {
+                pawn.resource.gravity +=
+                    Vector3.Down * (float)delta * TacticsPawnResource.GravityStrength;
+                _pVelocity =
+                    (
+                        pawn.resource.pathfindingTilestack[0].GlobalPosition - pawn.GlobalPosition
+                    ).Normalized() + pawn.resource.gravity;
+            }
+            else
+            {
+                _pVelocity = CalcVector.RemoveY(pawn.resource.moveDirection).Normalized();
+            }
+        }
+        return _pVelocity;
     }
 
-    public void ResetMovementState(TacticsPawn pawn) { }
+    public float CalculateSpeed(TacticsPawn pawn)
+    {
+        float _currentSpeed = pawn.resource.walkSpeed;
 
-    public void CheckMovementCompletion(TacticsPawn pawn) { }
+        if (pawn.resource.moveDirection.Y > TacticsPawnResource.MinHeightToJump)
+        {
+            _currentSpeed = Math.Clamp(
+                Math.Abs(pawn.resource.moveDirection.Y) * 2.3f,
+                3,
+                float.PositiveInfinity
+            );
+            pawn.resource.isJumping = true;
+        }
+        return _currentSpeed;
+    }
+
+    public void ResetMovementState(TacticsPawn pawn)
+    {
+        pawn.resource.moveDirection = Vector3.Zero;
+        pawn.resource.isJumping = false;
+        pawn.resource.gravity = Vector3.Zero;
+        pawn.resource.canMove = pawn.resource.pathfindingTilestack.Count > 0;
+    }
+
+    public void CheckMovementCompletion(TacticsPawn pawn)
+    {
+        if (!pawn.resource.canMove)
+        {
+            pawn.resource.SetMoving(false);
+            pawn.character.AdjustToCenter(pawn);
+        }
+    }
 }
