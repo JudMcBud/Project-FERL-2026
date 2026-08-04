@@ -1,11 +1,18 @@
 using System;
+using Game.Models.View.Control.Tactics.TacticsControlsResource;
+using Game.Models.World.Combat.Participants.Pawn.Service.TacticsPawnService;
 using Godot;
 
 namespace Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 
 public partial class TacticsPawn : CharacterBody3D
 {
+    [Export]
+    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
+        "res://utilities/models/view/control/tactics/control.tres"
+    );
     public TacticsPawnResource resource;
+    public TacticsPawnService service;
     public const float Speed = 5.0f;
     public const float JumpVelocity = 4.5f;
 
