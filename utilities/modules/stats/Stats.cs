@@ -5,11 +5,13 @@ public partial class Stats : Node
 {
     #region Base Stats
     public int jump;
+    public int maxHealth;
     public int currentHealth;
+    public int attackPower;
     #endregion
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public void ApplyToCurrentHealth(int changeinHealth)
+    {
+        currentHealth = Math.Clamp(currentHealth + changeinHealth, 0, maxHealth);
+    }
 }
