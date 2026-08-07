@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
+using Godot.Collections;
 
 public partial class TacticsArenaService : RefCounted
 {
@@ -47,11 +48,7 @@ public partial class TacticsArenaService : RefCounted
         TileService.TilesIntoStaticbodies(_tiles);
     }
 
-    public void ProcessSurroundingTiles(
-        TacticsTile rootTile,
-        float height,
-        List<Node3D> alliesOnMap
-    )
+    public void ProcessSurroundingTiles(TacticsTile rootTile, float height, Array<Node> alliesOnMap)
     {
         List<TacticsTile> _tilesProcessQueue = [rootTile];
 
@@ -100,7 +97,7 @@ public partial class TacticsArenaService : RefCounted
         return pathTilesStack;
     }
 
-    public TacticsTile GetNearestTargetAdjacentTile(TacticsPawn pawn, List<TacticsPawn> targetPawns)
+    public TacticsTile GetNearestTargetAdjacentTile(TacticsPawn pawn, Array<Node> targetPawns)
     {
         TacticsTile _nearestTarget = null;
 
@@ -135,7 +132,7 @@ public partial class TacticsArenaService : RefCounted
         }
     }
 
-    public TacticsPawn GetWeakestAttackablePawn(List<TacticsPawn> pawnList)
+    public TacticsPawn GetWeakestAttackablePawn(Array<Node> pawnList)
     {
         TacticsPawn weakest = null;
 

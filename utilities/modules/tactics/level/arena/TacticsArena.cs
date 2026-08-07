@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
+using Godot.Collections;
 
 public partial class TacticsArena : Node3D
 {
@@ -33,7 +34,7 @@ public partial class TacticsArena : Node3D
     public void ProcessSurroundingTiles(
         TacticsTile rootTile,
         float height,
-        List<Node3D> alliesOnMap = null
+        Array<Node> alliesOnMap = null
     )
     {
         alliesOnMap ??= [];
@@ -45,12 +46,12 @@ public partial class TacticsArena : Node3D
         return service.GetPathfindingTileStack(to);
     }
 
-    public TacticsTile GetNearestTargetAdjacentTile(TacticsPawn pawn, List<TacticsPawn> targetPawns)
+    public TacticsTile GetNearestTargetAdjacentTile(TacticsPawn pawn, Array<Node> targetPawns)
     {
         return service.GetNearestTargetAdjacentTile(pawn, targetPawns);
     }
 
-    public TacticsPawn GetWeakestAttackablePawn(List<TacticsPawn> pawnList)
+    public TacticsPawn GetWeakestAttackablePawn(Array<Node> pawnList)
     {
         return service.GetWeakestAttackablePawn(pawnList);
     }
