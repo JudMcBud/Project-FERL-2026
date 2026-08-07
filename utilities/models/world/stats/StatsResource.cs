@@ -27,7 +27,7 @@ public partial class StatsResource : Resource
     public int movement = 3;
 
     [Export]
-    public float jump = 1.5f;
+    public int jump = 1;
 
     [Export]
     public int maxHealth = 5;
@@ -45,7 +45,7 @@ public partial class StatsResource : Resource
     // #region Methods
     // public void SetJump()
     // {
-    //     jump = (float)Math.Floor(movement / 2.0);
+    //     jump = (int)Math.Floor(jump / 2.0);
     // }
     // #endregion
 }
