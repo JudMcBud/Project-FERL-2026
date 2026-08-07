@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Game.Models.World.Combat.Participants.Pawn.Service.TacticsPawnService;
 using Godot;
@@ -14,64 +15,75 @@ public partial class TacticsPawn : CharacterBody3D
     public TacticsPawnResource resource;
     public TacticsPawnService service;
 
+    public Stats stats;
     public string expertise;
     public TacticsPawnSprite character;
-    public const float Speed = 5.0f;
-    public const float JumpVelocity = 4.5f;
 
-    public Stats stats;
+    public override void _Ready()
+    {
+        stats = GetNode<Stats>("Expertise/Stats");
+        expertise = stats.expertise;
+        character = GetNode<TacticsPawnSprite>("Character");
+
+        resource = new TacticsPawnResource();
+        service = new TacticsPawnService();
+        service.Setup(this);
+        controls.SetActionsMenuVisibilityHandler(false, this);
+        ShowPawnStats(false);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
-        Vector3 velocity = Velocity;
+        service.Process(this, delta);
+    }
 
-        // Add the gravity.
-        if (!IsOnFloor())
-        {
-            velocity += GetGravity() * (float)delta;
-        }
+    public bool Center()
+    {
+        return character.AdjustToCenter(this);
+    }
 
-        // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-        {
-            velocity.Y = JumpVelocity;
-        }
-
-        // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
-        Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-        if (direction != Vector3.Zero)
-        {
-            velocity.X = direction.X * Speed;
-            velocity.Z = direction.Z * Speed;
-        }
-        else
-        {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-            velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-        }
-
-        Velocity = velocity;
-        MoveAndSlide();
+    public void ShowPawnStats(bool v)
+    {
+        GetNode<Node3D>("Character/CharacterUI").Visible = v;
     }
 
     public TacticsTile GetTile()
     {
-        return new TacticsTile();
+        return (TacticsTile)GetNode<RayCast3D>("Tile").GetCollider();
+    }
+
+    public bool IsAlive()
+    {
+        return stats.currentHealth > 0;
+    }
+
+    public bool CanPawnAttack()
+    {
+        return resource.canAttack && IsAlive();
     }
 
     public bool CanAct()
     {
-        return true;
+        return (resource.canMove || resource.canAttack) && IsAlive();
     }
 
-    public void ResetTurn() { }
+    public void ResetTurn()
+    {
+        resource.ResetTurn();
+    }
 
-    public void EndTurn() { }
+    public void EndPawnTurn()
+    {
+        resource.EndPawnTurn();
+    }
 
     public bool AttackTargetPawn(TacticsPawn targetPawn, double delta)
     {
-        return true;
+        return service.AttackTargetPawn(this, targetPawn, delta);
+    }
+
+    public void MoveAlongPath(double delta)
+    {
+        service.movement.MoveAlongPath(this, delta);
     }
 }

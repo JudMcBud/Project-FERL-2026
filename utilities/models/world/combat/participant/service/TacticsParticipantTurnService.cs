@@ -126,7 +126,7 @@ public partial class TacticsParticipantTurnService : RefCounted
     public void SkipTurn(TacticsPlayer player)
     {
         foreach (TacticsPawn pawn in player.GetChildren())
-            pawn.EndTurn();
+            pawn.EndPawnTurn();
         resource.stage = TacticsParticipantResource.Stage.SelectPawn;
     }
 }
