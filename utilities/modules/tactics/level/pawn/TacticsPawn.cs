@@ -15,7 +15,6 @@ public partial class TacticsPawn : CharacterBody3D
     public TacticsPawnService service;
 
     public string expertise;
-
     public TacticsPawnSprite character;
     public const float Speed = 5.0f;
     public const float JumpVelocity = 4.5f;
