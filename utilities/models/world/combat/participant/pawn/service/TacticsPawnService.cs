@@ -1,4 +1,3 @@
-using System;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
 
@@ -23,5 +22,19 @@ public partial class TacticsPawnService : RefCounted
     public void Setup(TacticsPawn pawn)
     {
         animation.Setup(pawn);
+    }
+
+    public void Process(TacticsPawn pawn, double delta)
+    {
+        pawn.GetNode<TacticsPawnSprite>("Character").RotateSprite(pawn.GlobalBasis);
+        movement.MoveAlongPath(pawn, delta);
+        animation.StartAnimator(pawn);
+        ui.TintWhenUnableToAct(pawn);
+        ui.UpdateCharacterHealth(pawn);
+    }
+
+    public bool AttackTargetPawn(TacticsPawn pawn, TacticsPawn targetPawn, double delta)
+    {
+        return combat.AttackTargetPawn(pawn, targetPawn, delta);
     }
 }
