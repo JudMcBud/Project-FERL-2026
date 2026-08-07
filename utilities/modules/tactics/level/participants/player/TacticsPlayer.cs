@@ -4,11 +4,41 @@ using Godot;
 
 public partial class TacticsPlayer : TacticsParticipant
 {
-    public void ShowAvailablePawnActions() { }
+    TacticsPlayerService playerService;
 
-    public void ShowAvailableMovements() { }
+    public override void _Ready()
+    {
+        base._Ready();
+        playerService = new TacticsPlayerService(resource, camera, controls, arena);
+    }
 
-    public void MovePawn() { }
+    public override void _PhysicsProcess(double delta)
+    {
+        playerService.ToggleEnemyStats(GetNode("../TacticsOpponent"));
+    }
 
-    public void DisplayAttackableTargets() { }
+    public bool IsPawnConfigured()
+    {
+        return playerService.IsPawnConfigured(this);
+    }
+
+    public void ShowAvailablePawnActions()
+    {
+        playerService.ShowAvailablePawnActions();
+    }
+
+    public void ShowAvailableMovements()
+    {
+        playerService.ShowAvailableMovements();
+    }
+
+    public void DisplayAttackableTargets()
+    {
+        playerService.DisplayAttackableTargets();
+    }
+
+    public void MovePawn()
+    {
+        playerService.MovePawn();
+    }
 }
