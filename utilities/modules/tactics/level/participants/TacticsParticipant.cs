@@ -9,24 +9,24 @@ namespace Game.Models.World.Combat.Participants.TacticsParticipant;
 public partial class TacticsParticipant : Node3D
 {
     [Export]
-    private TacticsParticipantResource resource = GD.Load<TacticsParticipantResource>(
+    public TacticsParticipantResource resource = GD.Load<TacticsParticipantResource>(
         "res://utilities/models/world/combat/participant/participant.tres"
     );
 
     [Export]
-    private TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
+    public TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
         "res://utilities/models/view/camera/tactics/camera.tres"
     );
 
     [Export]
-    private TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
+    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
         "res://utilities/models/view/control/tactics/control.tres"
     );
 
     public TacticsParticipantService service;
-    private TacticsArena arena;
-    private TacticsPlayer player;
-    private TacticsOpponent opponent;
+    public TacticsArena arena;
+    public TacticsPlayer player;
+    public TacticsOpponent opponent;
 
     public override void _Ready()
     {
