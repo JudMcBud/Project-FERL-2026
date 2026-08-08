@@ -4,11 +4,36 @@ using Godot;
 
 public partial class TacticsOpponent : TacticsParticipant
 {
-    public void ChoosePawn() { }
+    public TacticsOpponentService opponentService;
 
-    public void ChaseNearestEnemy() { }
+    public override void _Ready()
+    {
+        base._Ready();
+        opponentService = new TacticsOpponentService(resource, camera, controls, arena);
+    }
 
-    public void IsPawnDoneMoving() { }
+    public bool IsPawnConfigured()
+    {
+        return opponentService.IsPawnConfigured(this);
+    }
 
-    public void ChoosePawnToAttack() { }
+    public void ChoosePawn()
+    {
+        opponentService.ChoosePawn(this);
+    }
+
+    public void ChaseNearestEnemy()
+    {
+        opponentService.ChaseNearestEnemy(this, GetNode("../TacticsPlayer"));
+    }
+
+    public void IsPawnDoneMoving()
+    {
+        opponentService.IsPawnDoneMoving();
+    }
+
+    public void ChoosePawnToAttack()
+    {
+        opponentService.ChoosePawnToAttack();
+    }
 }
