@@ -41,4 +41,6 @@ public partial class TacticsCamera : CharacterBody3D
         Velocity = velocity;
         MoveAndSlide();
     }
+
+    public void MoveCamera(float h, float v, bool joystick, double delta) { }
 }
