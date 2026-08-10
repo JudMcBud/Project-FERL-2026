@@ -83,8 +83,8 @@ public partial class TacticsCameraResource : Resource
     [Export(PropertyHint.Range, "0.01, 1,")]
     public float joyPanSpeed = 0.5f;
 
-    private const float PanningDelay = 0.05f;
-    private const float panningTimer = 0.0f;
+    public const float PanningDelay = 0.05f;
+    public float panningTimer = 0.0f;
     #endregion
 
     #region Rotation
@@ -116,7 +116,7 @@ public partial class TacticsCameraResource : Resource
     [Export]
     public int zRotation;
 
-    private Vector2 mousePosition;
+    public Vector2 mousePosition;
 
     private static bool inFreeLook;
 
@@ -125,7 +125,7 @@ public partial class TacticsCameraResource : Resource
     private const float FreeLookTimeout = 0.05f;
     private static float twistInput;
     private static float pitchInput;
-    private Vector2I viewportSize;
+    public Vector2I viewportSize;
     #endregion
 
     #region Signals
