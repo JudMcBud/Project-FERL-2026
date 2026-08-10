@@ -24,7 +24,7 @@ public partial class TacticsCameraResource : Resource
     [ExportCategory("Movement")]
     [Export(PropertyHint.Range, "1,100,")]
     public int moveSpeed { get; set; } = 10;
-    private static float rotSpeed;
+    public static float rotSpeed;
 
     [Export(PropertyHint.Range, "1,100,")]
     public float RotationSpeed
@@ -36,7 +36,7 @@ public partial class TacticsCameraResource : Resource
     [Export(PropertyHint.Range, "0.01, 1,")]
     public float smoothing = 0.1f;
 
-    private Vector3 targetVelocity = Vector3.Zero;
+    public Vector3 targetVelocity = Vector3.Zero;
 
     public Node3D target = null;
     #endregion
