@@ -38,7 +38,7 @@ public partial class TacticsConfig : Node3D
 
     public static Dictionary<string, int> view = new Dictionary<string, int>
     {
-        { "defaultTCaMZoom", 30 },
+        { "defaultTCamZoom", 30 },
     };
 
     public static List<string> uiElem = ["%Actions", "%Hints"];
