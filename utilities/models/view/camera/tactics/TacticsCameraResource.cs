@@ -93,9 +93,9 @@ public partial class TacticsCameraResource : Resource
     [Export(PropertyHint.Range, "0.1, 10,")]
     public float quadSnapDuration = 0.2f;
 
-    private bool isSnappingToQuad = false;
-    private bool isRotating = false;
-    private static int xRotation;
+    public bool isSnappingToQuad = false;
+    public bool isRotating = false;
+    public static int xRotation;
 
     [Export]
     public int VerticalRotation
@@ -104,7 +104,7 @@ public partial class TacticsCameraResource : Resource
         set => xRotation = value;
     }
 
-    private static int yRotation;
+    public static int yRotation;
 
     [Export]
     public int HorizontalRotation
@@ -118,13 +118,13 @@ public partial class TacticsCameraResource : Resource
 
     public Vector2 mousePosition;
 
-    private static bool inFreeLook;
+    public static bool inFreeLook;
 
     // Probably want to change this to a recenter camera button press input instead of a timer
-    private float freeLookTimer = 0.0f;
-    private const float FreeLookTimeout = 0.05f;
-    private static float twistInput;
-    private static float pitchInput;
+    public float freeLookTimer = 0.0f;
+    public const float FreeLookTimeout = 0.05f;
+    public static float twistInput;
+    public static float pitchInput;
     public Vector2I viewportSize;
     #endregion
 
