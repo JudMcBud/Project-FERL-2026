@@ -18,7 +18,7 @@ public partial class TacticsCameraResource : Resource
     public delegate void FreeLookEventHandler(double delta, float twist);
 
     [Signal]
-    public delegate void RotateCameraEventHandler();
+    public delegate void RotateCameraEventHandler(double delta, int twist = 0);
 
     #region Movement
     [ExportCategory("Movement")]
@@ -134,7 +134,7 @@ public partial class TacticsCameraResource : Resource
         EmitSignal(SignalName.MoveCamera, horizontal, vertical, joystick, delta);
     }
 
-    private void RotateCameraHandler(double delta, float twist = 0.0f)
+    private void RotateCameraHandler(double delta, int twist = 0)
     {
         EmitSignal(SignalName.RotateCamera, delta, twist);
     }
