@@ -5,6 +5,8 @@ public partial class TacticsCamera : CharacterBody3D
 {
     public Node3D tPivot;
     public Node3D pPivot;
+
+    public Camera3D camNode;
     public const float Speed = 5.0f;
     public const float JumpVelocity = 4.5f;
 
