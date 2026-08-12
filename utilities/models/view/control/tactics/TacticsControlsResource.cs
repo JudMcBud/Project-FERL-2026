@@ -29,7 +29,7 @@ public partial class TacticsControlsResource : Resource
     private delegate void SetCursorShapeToArrowEventHandler();
 
     [Export]
-    private bool isJoystick;
+    public bool isJoystick;
 
     // Should probably phase this out at the end
     [Export]
