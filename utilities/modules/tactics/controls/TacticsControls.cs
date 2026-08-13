@@ -27,6 +27,9 @@ public partial class TacticsControls : Control
         "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
     );
 
+    public Texture2D layoutXbox = GD.Load<Texture2D>("");
+    public Texture2D layoutPC = GD.Load<Texture2D>("");
+
     public TacticsPawn currentPawn = null;
     public TacticsControlsService service;
     #endregion
