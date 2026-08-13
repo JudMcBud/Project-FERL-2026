@@ -41,7 +41,7 @@ public partial class TacticsConfig : Node3D
         { "defaultTCamZoom", 30 },
     };
 
-    public static List<string> uiElem = ["%Actions", "%Hints"];
+    public static readonly List<string> uiElem = ["%Actions", "%Hints"];
     #endregion
 
     private static StandardMaterial3D CreateMaterial(

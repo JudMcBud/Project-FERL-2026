@@ -1,0 +1,27 @@
+using System;
+using Godot;
+
+public partial class MouseClickCapture : Node3D
+{
+    #region Methods
+    public Object ProjectMousePosition(int collisionMask, bool isJoystick)
+    {
+        int RayLength = 1000000;
+        Camera3D camera = GetViewport().GetCamera3D();
+        Vector2 mousePointerOrigin = !isJoystick
+            ? GetViewport().GetMousePosition()
+            : GetViewport().GetVisibleRect().Size / 2;
+
+        Vector3 from = camera.ProjectRayOrigin(mousePointerOrigin);
+        Vector3 to = from + camera.ProjectRayNormal(mousePointerOrigin) * RayLength;
+
+        PhysicsRayQueryParameters3D rayQuery = PhysicsRayQueryParameters3D.Create(
+            from,
+            to,
+            (uint)collisionMask,
+            []
+        );
+        return GetWorld3D().DirectSpaceState.IntersectRay(rayQuery)["collider"];
+    }
+    #endregion
+}
