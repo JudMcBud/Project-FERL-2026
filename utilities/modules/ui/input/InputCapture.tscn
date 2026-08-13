@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgwdfdk44oy6"]
+
+[ext_resource type="Script" uid="uid://dw3i38mv1t6b4" path="res://utilities/modules/ui/input/MouseClickCapture.cs" id="1_1lit2"]
+
+[node name="InputCapture" type="Node3D" unique_id=758626757]
+script = ExtResource("1_1lit2")
