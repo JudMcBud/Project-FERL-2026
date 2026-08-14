@@ -25,9 +25,9 @@ public partial class InputCapture : Node3D
         ProjectMousePosition(1, false);
     }
 
-    public void UnhandledInput(InputEvent e)
+    public override void _UnhandledInput(InputEvent @event)
     {
-        service.HandleInput(e);
+        service.HandleInput(@event);
     }
 
     public CollisionObject3D ProjectMousePosition(int collisionMask, bool isJoystick)
