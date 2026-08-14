@@ -143,7 +143,7 @@ public partial class TacticsControlsSelectionService : RefCounted
         participant.stage = TacticsParticipantResource.Stage.SelectPawn;
     }
 
-    public void PLayerWantsToSkipTurn()
+    public void PlayerWantsToSkipTurn()
     {
         if (participant.displayOpponentStats)
             participant.displayOpponentStats = false;
