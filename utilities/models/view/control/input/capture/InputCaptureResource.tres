@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InputCaptureResource" format=3 uid="uid://cd5xtg6tni2i0"]
+
+[ext_resource type="Script" uid="uid://cnto3dt7n6k5u" path="res://utilities/models/view/control/input/capture/InputCaptureResource.cs" id="1_0at2w"]
+
+[resource]
+script = ExtResource("1_0at2w")
+metadata/_custom_type_script = "uid://cnto3dt7n6k5u"

@@ -43,7 +43,7 @@ public partial class TacticsCameraResource : Resource
 
     #region Zoom
     [ExportCategory("Zoom")]
-    private static float zoomSpeed = 0.5f;
+    public static float zoomSpeed = 0.5f;
 
     [Export(PropertyHint.Range, "0.01, 1,")]
     public float CameraZoomSpeed
@@ -94,7 +94,7 @@ public partial class TacticsCameraResource : Resource
     public float quadSnapDuration = 0.2f;
 
     public bool isSnappingToQuad = false;
-    public bool isRotating = false;
+    public static bool isRotating = false;
     public static int xRotation;
 
     [Export]
