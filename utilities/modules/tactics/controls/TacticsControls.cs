@@ -27,51 +27,130 @@ public partial class TacticsControls : Control
         "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
     );
 
-    public Texture2D layoutXbox = GD.Load<Texture2D>("");
-    public Texture2D layoutPC = GD.Load<Texture2D>("");
-
     public TacticsPawn currentPawn = null;
     public TacticsControlsService service;
+
+    public Texture2D layoutXbox = GD.Load<Texture2D>(
+        "res://assets/textures/ui/labels/controlsHints/controls-ui-xbox.png"
+    );
+    public Texture2D layoutPC = GD.Load<Texture2D>(
+        "res://assets/textures/ui/labels/controlsHints/controls-ui.png"
+    );
+
+    InputCapture inputCapture;
+    #endregion
+
+    #region --- Processing ---
+    public override void _Ready()
+    {
+        inputCapture = GetNode<InputCapture>("InputCapture");
+
+        service = new TacticsControlsService(
+            controls,
+            tacticsCam,
+            participant,
+            arena,
+            inputCapture
+        );
+        service.Setup(this);
+
+        foreach (string action in controls.actions.Keys)
+        {
+            StringName stringName = controls.actions[action];
+            GetAct(action).Pressed += () => Call(stringName);
+        }
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        service.PhysicsProcess(delta, this);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        service.HandleInput(@event);
+    }
     #endregion
 
     #region --- Methods ---
-    public void SetCursorShapeToMove() { }
-
-    public void SetCursorShapeToArrow() { }
-
-    public void MoveCamera(double delta) { }
-
-    public Button GetAct(string action)
+    public void SetCursorShapeToMove()
     {
-        return new Button();
+        CursorService.SetCursorShapeToMove();
+    }
+
+    public void SetCursorShapeToArrow()
+    {
+        CursorService.SetCursorShapeToArrow();
+    }
+
+    public void MoveCamera(double delta)
+    {
+        // This code is dead in the original project
+        service.cameraService.MoveCamera(delta, controls.isJoystick);
+    }
+
+    public Button GetAct(string action = "")
+    {
+        // Might be a bug here because %Actions doesn't return a button but a BoxContainer
+        if (action == "")
+            return GetNode<Button>("%Actions");
+        return GetNode<BoxContainer>("%Actions").GetNode<Button>(action);
     }
 
     public bool IsMouseHoveringUiElem()
     {
-        return false;
+        // This code is also dead in the original project
+        return service.inputService.IsMouseHoveringUIElem(this);
     }
 
-    public void SetActionsMenuVisibility(bool v, TacticsPawn p) { }
+    public void SetActionsMenuVisibility(bool v, TacticsPawn p)
+    {
+        service.SetActionsMenuVisibility(v, p, this);
+    }
 
     public Object Get3DCanvasMousePosition(int collisionMask)
     {
-        return new Object();
+        return service.inputService.Get3DCanvasMousePosition(collisionMask, this);
     }
 
-    public void SelectPawn(TacticsPlayer player) { }
+    public void SelectPawn(TacticsPlayer player)
+    {
+        service.SelectPawn(player, this);
+    }
 
-    public void SelectNewLocation() { }
+    public void SelectNewLocation()
+    {
+        service.SelectNewLocation(this);
+    }
 
-    public void SelectPawnToAttack() { }
+    public void SelectPawnToAttack()
+    {
+        service.SelectPawnToAttack(this);
+    }
 
-    public void PlayerWantsToMove() { }
+    public void PlayerWantsToMove()
+    {
+        service.PlayerWantsToMove();
+    }
 
-    public void PlayerWantsToCancel() { }
+    public void PlayerWantsToCancel()
+    {
+        service.PlayerWantsToCancel();
+    }
 
-    public void PlayerWantsToWait() { }
+    public void PlayerWantsToWait()
+    {
+        service.PlayerWantsToWait();
+    }
 
-    public void PLayerWantsToSkipTurn() { }
+    public void PLayerWantsToSkipTurn()
+    {
+        service.PlayerWantsToSkipTurn();
+    }
 
-    public void PlayerWantsToAttack() { }
+    public void PlayerWantsToAttack()
+    {
+        service.PlayerWantsToAttack();
+    }
     #endregion
 }
