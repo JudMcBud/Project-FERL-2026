@@ -60,7 +60,7 @@ public partial class TacticsCameraRotationService : RefCounted
         pPivot.Rotation = newQuatP.GetEuler();
 
         if (Mathf.IsEqualApprox(tPivot.Rotation.Y, Mathf.DegToRad(TacticsCameraResource.yRotation)))
-            resource.isRotating = false;
+            TacticsCameraResource.isRotating = false;
     }
 
     public void CheckFreeLookActivation(double delta, TacticsCamera camera)
