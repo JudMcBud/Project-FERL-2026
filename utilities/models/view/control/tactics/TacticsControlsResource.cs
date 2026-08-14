@@ -8,32 +8,32 @@ namespace Game.Models.View.Control.Tactics.TacticsControlsResource;
 public partial class TacticsControlsResource : Resource
 {
     [Signal]
-    private delegate void SetActionsMenuVisibilityEventHandler(bool v, TacticsPawn pawn);
+    public delegate void SetActionsMenuVisibilityEventHandler(bool v, TacticsPawn pawn);
 
     [Signal]
-    private delegate void MoveCameraEventHandler(double delta);
+    public delegate void MoveCameraEventHandler(double delta);
 
     [Signal]
-    private delegate void SelectPawnEventHandler(TacticsPlayer player);
+    public delegate void SelectPawnEventHandler(TacticsPlayer player);
 
     [Signal]
-    private delegate void SelectPawnToAttackEventHandler();
+    public delegate void SelectPawnToAttackEventHandler();
 
     [Signal]
-    private delegate void SelectNewLocationEventHandler();
+    public delegate void SelectNewLocationEventHandler();
 
     [Signal]
-    private delegate void SetCursorShapeToMoveEventHandler();
+    public delegate void SetCursorShapeToMoveEventHandler();
 
     [Signal]
-    private delegate void SetCursorShapeToArrowEventHandler();
+    public delegate void SetCursorShapeToArrowEventHandler();
 
     [Export]
     public bool isJoystick;
 
     // Should probably phase this out at the end
     [Export]
-    private bool inputHintsFolded;
+    public bool inputHintsFolded;
 
     public Dictionary<string, string> actions = new Dictionary<string, string>
     {
