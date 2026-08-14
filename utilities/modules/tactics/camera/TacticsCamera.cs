@@ -47,7 +47,7 @@ public partial class TacticsCamera : CharacterBody3D
 
     public void RotateCamera(double delta, int twist = 0)
     {
-        resource.isRotating = true;
+        TacticsCameraResource.isRotating = true;
         service.rotate.AddAngleToHorizontalRotation(twist);
         service.rotate.RotateCamera(delta, tPivot, pPivot);
     }
