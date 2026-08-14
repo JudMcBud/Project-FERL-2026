@@ -129,7 +129,11 @@ public partial class TacticsCameraResource : Resource
     #endregion
 
     #region Signals
-    private void MoveCameraHandler(float horizontal, float vertical, bool joystick, double delta)
+
+    /// <summary>
+    /// Emits signal to move camera
+    /// </summary>
+    public void MoveCameraHandler(float horizontal, float vertical, bool joystick, double delta)
     {
         EmitSignal(SignalName.MoveCamera, horizontal, vertical, joystick, delta);
     }
