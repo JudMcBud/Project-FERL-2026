@@ -33,4 +33,45 @@ public partial class TacticsControls : Control
     public TacticsPawn currentPawn = null;
     public TacticsControlsService service;
     #endregion
+
+    #region --- Methods ---
+    public void SetCursorShapeToMove() { }
+
+    public void SetCursorShapeToArrow() { }
+
+    public void MoveCamera(double delta) { }
+
+    public Button GetAct(string action)
+    {
+        return new Button();
+    }
+
+    public bool IsMouseHoveringUiElem()
+    {
+        return false;
+    }
+
+    public void SetActionsMenuVisibility(bool v, TacticsPawn p) { }
+
+    public Object Get3DCanvasMousePosition(int collisionMask)
+    {
+        return new Object();
+    }
+
+    public void SelectPawn(TacticsPlayer player) { }
+
+    public void SelectNewLocation() { }
+
+    public void SelectPawnToAttack() { }
+
+    public void PlayerWantsToMove() { }
+
+    public void PlayerWantsToCancel() { }
+
+    public void PlayerWantsToWait() { }
+
+    public void PLayerWantsToSkipTurn() { }
+
+    public void PlayerWantsToAttack() { }
+    #endregion
 }
