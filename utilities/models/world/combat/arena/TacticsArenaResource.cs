@@ -27,7 +27,7 @@ public partial class TacticsArenaResource : Resource
         return pathTilesStack;
     }
 
-    public void OnMarkHoverTileEventHandler(TacticsTile tile)
+    public void OnMarkHoverTile(TacticsTile tile)
     {
         EmitSignal(SignalName.MarkHoverTile, tile);
     }

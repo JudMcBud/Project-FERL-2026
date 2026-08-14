@@ -31,7 +31,7 @@ public partial class TacticsParticipantResource : Resource
     public bool displayOpponentStats = false;
     public bool turnJustStarted = true;
 
-    public void HandleSkipTurn()
+    public void SkipTurnHandler()
     {
         EmitSignal(SignalName.SkipTurn);
     }
