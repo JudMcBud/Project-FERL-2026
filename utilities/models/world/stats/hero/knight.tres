@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://bdqsg2fk6osn8"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_f2xnt"]
+
+[resource]
+script = ExtResource("1_f2xnt")
+overrideName = "Knight Generic"
+expertise = "Knight"
+sprite = "res://assets/textures/actor/character/chr_pawn_knight.png"
+maxHealth = 50
+attackPower = 20
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

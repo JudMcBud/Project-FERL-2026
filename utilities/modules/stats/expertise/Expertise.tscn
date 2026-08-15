@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmk5k17awap4l"]
+
+[ext_resource type="Script" uid="uid://htcwkhsgdrhh" path="res://utilities/modules/stats/expertise/Expertise.cs" id="1_inys7"]
+[ext_resource type="Resource" uid="uid://bdqsg2fk6osn8" path="res://utilities/models/world/stats/hero/knight.tres" id="2_3egte"]
+[ext_resource type="Script" uid="uid://dlbnx7a4p84ni" path="res://utilities/modules/stats/Stats.cs" id="2_qixl4"]
+
+[node name="Expertise" type="Node" unique_id=574093845]
+script = ExtResource("1_inys7")
+startingStats = ExtResource("2_3egte")
+startingSkills = Array[String]([])
+
+[node name="Stats" type="Node" parent="." unique_id=563476845]
+script = ExtResource("2_qixl4")
+
+[node name="Skills" type="Node" parent="." unique_id=705273285]
