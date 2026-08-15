@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ckj1vwm3ee33f"]
+
+[ext_resource type="Script" uid="uid://b7h7d4o1d18kr" path="res://utilities/modules/tactics/camera/TacticsCamera.cs" id="1_xy4qt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_egm1s"]
+
+[node name="TacticsCamera" type="CharacterBody3D" unique_id=1273066391]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_xy4qt")
+resource = null
+controls = null
+
+[node name="TwistPivot" type="Node3D" parent="." unique_id=1404513283]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot" unique_id=1965394636]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot" unique_id=2011980409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+fov = 30.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286206590]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_egm1s")

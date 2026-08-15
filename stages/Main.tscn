@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://cnwniu5ydag0d"]
 
 [ext_resource type="Script" uid="uid://bq80iriq4tjtt" path="res://utilities/Main.cs" id="1_xn45j"]
+[ext_resource type="PackedScene" uid="uid://ckj1vwm3ee33f" path="res://utilities/modules/tactics/camera/TacticsCamera.tscn" id="2_qf2yy"]
+[ext_resource type="PackedScene" uid="uid://jx6yas8y15dy" path="res://utilities/modules/tactics/controls/TacticsControls.tscn" id="3_uc6bj"]
 
 [node name="Main" type="Node3D" unique_id=1535658367]
 script = ExtResource("1_xn45j")
+
+[node name="Camera" type="Node3D" parent="." unique_id=1999863617]
+
+[node name="TacticsCamera" parent="Camera" unique_id=1273066391 instance=ExtResource("2_qf2yy")]
 
 [node name="UI" type="Control" parent="." unique_id=1905283554]
 layout_mode = 3
@@ -24,5 +30,7 @@ offset_bottom = 40.0
 [node name="LoadMap0" type="Button" parent="UI/MapSelector" unique_id=1625502611]
 layout_mode = 2
 text = "Test Level"
+
+[node name="TacticsControls" parent="." unique_id=483806842 instance=ExtResource("3_uc6bj")]
 
 [node name="World" type="Node3D" parent="." unique_id=1621877540]

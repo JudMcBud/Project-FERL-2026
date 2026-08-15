@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://muo4md3brypr"]
+
+[ext_resource type="Script" uid="uid://bw3o0vr4dscbb" path="res://utilities/models/world/combat/arena/tileService/TacticsTileService.cs" id="1_ew7wb"]
+
+[node name="TileConverter" type="Node3D" unique_id=354893271]
+script = ExtResource("1_ew7wb")

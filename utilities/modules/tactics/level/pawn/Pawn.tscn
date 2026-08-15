@@ -1,13 +1,164 @@
 [gd_scene format=3 uid="uid://cv3xt4upevh0r"]
 
 [ext_resource type="Script" uid="uid://d4ih6ln2d1302" path="res://utilities/modules/tactics/level/pawn/TacticsPawn.cs" id="1_sw154"]
+[ext_resource type="Texture2D" uid="uid://dstaour7m68tg" path="res://assets/textures/actor/chr_pawn_placeholder.png" id="2_lsjcg"]
+[ext_resource type="Script" uid="uid://5bgnnsqevdjy" path="res://utilities/models/world/combat/participant/pawn/service/TacticsPawnSprite.cs" id="3_onipi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_egm1s"]
 height = 2.15
 
+[sub_resource type="Animation" id="Animation_ek187"]
+resource_name = "Damage"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.0, 0.0, 1.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_am55u"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.602, 0), Vector3(0, 0.602, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lsjcg"]
+resource_name = "Jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(0.32987696, 1.8025017, 1),
+"update": 0,
+"values": [Vector3(0, 0.602, 0), Vector3(0, 2.2, 0), Vector3(0, 0.602, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wjt6q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.602, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6voj"]
+_data = {
+&"Damage": SubResource("Animation_ek187"),
+&"Idle": SubResource("Animation_am55u"),
+&"Jump": SubResource("Animation_lsjcg"),
+&"RESET": SubResource("Animation_wjt6q")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lsjcg"]
+animation = &"Damage"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onipi"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ek187"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_am55u"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjt6q"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6voj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pdafh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_onipi"]
+states/Damage/node = SubResource("AnimationNodeAnimation_lsjcg")
+states/Damage/position = Vector2(337, 17)
+states/Idle/node = SubResource("AnimationNodeAnimation_onipi")
+states/Idle/position = Vector2(337, 100)
+states/Jump/node = SubResource("AnimationNodeAnimation_ek187")
+states/Jump/position = Vector2(467, 100)
+transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_am55u"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wjt6q"), "Idle", "Damage", SubResource("AnimationNodeStateMachineTransition_t6voj"), "Damage", "Idle", SubResource("AnimationNodeStateMachineTransition_pdafh")]
+graph_offset = Vector2(-174, -18)
+
 [node name="Pawn" type="CharacterBody3D" unique_id=531513967]
 script = ExtResource("1_sw154")
+controls = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1889137062]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)
 shape = SubResource("CapsuleShape3D_egm1s")
+
+[node name="Tile" type="RayCast3D" parent="." unique_id=956559088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -2.1, 0)
+
+[node name="Character" type="Sprite3D" parent="." unique_id=2086251238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.602, 0)
+billboard = 1
+texture = ExtResource("2_lsjcg")
+vframes = 2
+script = ExtResource("3_onipi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Character" unique_id=54408544]
+libraries/ = SubResource("AnimationLibrary_t6voj")
+
+[node name="AnimationTree" type="AnimationTree" parent="Character" unique_id=128366117]
+tree_root = SubResource("AnimationNodeStateMachine_onipi")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CharacterUI" type="Node3D" parent="Character" unique_id=1787534739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.602, 0)
+visible = false
+
+[node name="NameLabel" type="Label3D" parent="Character/CharacterUI" unique_id=190999768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+billboard = 1
+text = "PawnName
+"
+font_size = 42
+
+[node name="HealthLabel" type="Label3D" parent="Character/CharacterUI" unique_id=50566480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+billboard = 1
+text = "100/100"
+font_size = 48
