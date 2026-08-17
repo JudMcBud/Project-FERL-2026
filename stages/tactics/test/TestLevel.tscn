@@ -2,35 +2,27 @@
 
 [ext_resource type="Script" uid="uid://rh6f5i7genra" path="res://utilities/modules/tactics/level/TacticsLevel.cs" id="1_51acx"]
 [ext_resource type="PackedScene" uid="uid://dwbmgds45ep4o" path="res://stages/tactics/test/arena/TestArena.tscn" id="2_51acx"]
+[ext_resource type="Resource" uid="uid://d13l15ikv0md8" path="res://utilities/models/view/camera/tactics/camera.tres" id="2_p3snc"]
+[ext_resource type="Resource" uid="uid://2cq6msemoms2" path="res://utilities/models/view/control/tactics/control.tres" id="3_8eixq"]
 [ext_resource type="Script" uid="uid://dtpb1o6r1kgsv" path="res://utilities/modules/tactics/level/participants/TacticsParticipant.cs" id="3_vwx8t"]
 [ext_resource type="Script" uid="uid://0dgvrl3s1eur" path="res://utilities/modules/tactics/level/participants/player/TacticsPlayer.cs" id="4_p3snc"]
 [ext_resource type="Script" uid="uid://dbtsdtvib6685" path="res://utilities/modules/tactics/level/participants/opponent/TacticsOpponent.cs" id="5_8eixq"]
 
 [node name="TacticsLevel" type="Node3D" unique_id=426331364]
 script = ExtResource("1_51acx")
-camera = null
-cameraBoundaryRadius = null
-uiControl = null
+camera = ExtResource("2_p3snc")
+uiControl = ExtResource("3_8eixq")
 
 [node name="TacticsArena" parent="." unique_id=529269254 instance=ExtResource("2_51acx")]
 unique_name_in_owner = true
 
 [node name="TacticsParticipant" type="Node3D" parent="." unique_id=684719834]
 script = ExtResource("3_vwx8t")
-resource = null
-camera = null
-controls = null
 
 [node name="TacticsPlayer" type="Node3D" parent="TacticsParticipant" unique_id=200364861]
 unique_name_in_owner = true
 script = ExtResource("4_p3snc")
-resource = null
-camera = null
-controls = null
 
 [node name="TacticsOpponent" type="Node3D" parent="TacticsParticipant" unique_id=1566975484]
 unique_name_in_owner = true
 script = ExtResource("5_8eixq")
-resource = null
-camera = null
-controls = null

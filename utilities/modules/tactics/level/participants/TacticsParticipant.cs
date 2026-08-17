@@ -9,19 +9,29 @@ namespace Game.Models.World.Combat.Participants.TacticsParticipant;
 public partial class TacticsParticipant : Node3D
 {
     [Export]
-    public TacticsParticipantResource resource = GD.Load<TacticsParticipantResource>(
-        "res://utilities/models/world/combat/participant/participant.tres"
-    );
+    public TacticsParticipantResource resource;
 
     [Export]
-    public TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
-        "res://utilities/models/view/camera/tactics/camera.tres"
-    );
+    public TacticsCameraResource camera;
 
     [Export]
-    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    public TacticsControlsResource controls;
+
+    private static TacticsParticipantResource LoadParticipantResource(string path)
+    {
+        return ResourceLoader.Load<TacticsParticipantResource>(path)
+            ?? new TacticsParticipantResource();
+    }
+
+    private static TacticsCameraResource LoadCameraResource(string path)
+    {
+        return ResourceLoader.Load<TacticsCameraResource>(path) ?? new TacticsCameraResource();
+    }
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
 
     public TacticsParticipantService service;
     public TacticsArena arena;
@@ -30,6 +40,12 @@ public partial class TacticsParticipant : Node3D
 
     public override void _Ready()
     {
+        resource = LoadParticipantResource(
+            "res://utilities/models/world/combat/participant/participant.tres"
+        );
+        camera = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
+        controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
+
         service = new TacticsParticipantService(resource, camera, controls);
         service.Setup(this);
         resource.SkipTurn += OnSkipTurn;

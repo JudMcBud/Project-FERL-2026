@@ -16,11 +16,11 @@ public partial class TacticsUIService : RefCounted
     {
         if (controls.isJoystick)
         {
-            ctrl.GetNode<TextureRect>("ControllerHints").Texture = ctrl.layoutXbox;
+            ctrl.GetNode<TextureRect>("%ControllerHints").Texture = ctrl.layoutXbox;
         }
         else
         {
-            ctrl.GetNode<TextureRect>("ControllerHints").Texture = ctrl.layoutPC;
+            ctrl.GetNode<TextureRect>("%ControllerHints").Texture = ctrl.layoutPC;
         }
     }
 
