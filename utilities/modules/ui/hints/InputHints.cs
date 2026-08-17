@@ -7,15 +7,19 @@ public partial class InputHints : Container
     public const float AnimationDuration = 0.3f;
     public const float FoldedOffset = -514.0f;
 
-    public TacticsControlsResource resource = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    public TacticsControlsResource resource;
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
 
     public Control controllerHints;
 
     public override void _Ready()
     {
-        controllerHints = GetNode<Control>("ControllerHints");
+        resource = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
+        controllerHints = GetNode<Control>("%ControllerHints");
 
         resource.inputHintsFolded = true;
         UpdateHintsVisibility(true);

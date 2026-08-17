@@ -8,26 +8,40 @@ public partial class TacticsControls : Control
 {
     #region Props
     [Export]
-    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    public TacticsControlsResource controls;
 
     [Export]
-    public TacticsCameraResource tacticsCam = GD.Load<TacticsCameraResource>(
-        "res://utilities/models/view/camera/tactics/camera.tres"
-    );
+    public TacticsCameraResource tacticsCam;
 
     [Export]
-    public TacticsParticipantResource participant = GD.Load<TacticsParticipantResource>(
-        "res://utilities/models/world/combat/participant/participant.tres"
-    );
+    public TacticsParticipantResource participant;
 
     [Export]
-    public TacticsArenaResource arena = GD.Load<TacticsArenaResource>(
-        "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
-    );
+    public TacticsArenaResource arena;
 
     public TacticsPawn currentPawn = null;
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
+
+    private static TacticsCameraResource LoadCameraResource(string path)
+    {
+        return ResourceLoader.Load<TacticsCameraResource>(path) ?? new TacticsCameraResource();
+    }
+
+    private static TacticsParticipantResource LoadParticipantResource(string path)
+    {
+        return ResourceLoader.Load<TacticsParticipantResource>(path)
+            ?? new TacticsParticipantResource();
+    }
+
+    private static TacticsArenaResource LoadArenaResource(string path)
+    {
+        return ResourceLoader.Load<TacticsArenaResource>(path) ?? new TacticsArenaResource();
+    }
+
     public TacticsControlsService service;
 
     public Texture2D layoutXbox = GD.Load<Texture2D>(
@@ -43,6 +57,15 @@ public partial class TacticsControls : Control
     #region --- Processing ---
     public override void _Ready()
     {
+        controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
+        tacticsCam = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
+        participant = LoadParticipantResource(
+            "res://utilities/models/world/combat/participant/participant.tres"
+        );
+        arena = LoadArenaResource(
+            "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
+        );
+
         inputCapture = GetNode<InputCapture>("InputCapture");
 
         service = new TacticsControlsService(

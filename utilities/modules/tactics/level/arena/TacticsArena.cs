@@ -14,9 +14,10 @@ public partial class TacticsArena : Node3D
 
     public override void _Ready()
     {
-        resource = GD.Load<TacticsArenaResource>(
-            "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
-        );
+        resource =
+            ResourceLoader.Load<TacticsArenaResource>(
+                "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
+            ) ?? new TacticsArenaResource();
         service = new TacticsArenaService(resource);
         service.Setup(this);
     }

@@ -6,16 +6,23 @@ using Godot;
 public partial class TacticsCamera : CharacterBody3D
 {
     [Export]
-    public TacticsCameraResource resource = GD.Load<TacticsCameraResource>(
-        "res://utilities/models/view/camera/tactics/camera.tres"
-    );
+    public TacticsCameraResource resource;
 
     [Export]
-    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    public TacticsControlsResource controls;
 
     public static TacticsCameraService service;
+
+    private static TacticsCameraResource LoadCameraResource(string path)
+    {
+        return ResourceLoader.Load<TacticsCameraResource>(path) ?? new TacticsCameraResource();
+    }
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
+
     public Node3D tPivot;
     public Node3D pPivot;
 
@@ -23,6 +30,9 @@ public partial class TacticsCamera : CharacterBody3D
 
     public override void _Ready()
     {
+        resource = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
+        controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
+
         tPivot = GetNode<Node3D>("TwistPivot");
         pPivot = GetNode<Node3D>("TwistPivot/PitchPivot");
         camNode = GetNode<Camera3D>("TwistPivot/PitchPivot/Camera3D");

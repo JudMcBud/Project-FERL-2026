@@ -1,10 +1,10 @@
 using System;
 using Godot;
 
-public partial class MouseClickCapture : Node3D
+public partial class MouseClickCapture : InputCapture
 {
     #region Methods
-    public Object ProjectMousePosition(int collisionMask, bool isJoystick)
+    public new Object ProjectMousePosition(int collisionMask, bool isJoystick)
     {
         int RayLength = 1000000;
         Camera3D camera = GetViewport().GetCamera3D();

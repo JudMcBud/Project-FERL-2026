@@ -9,9 +9,13 @@ namespace Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 public partial class TacticsPawn : CharacterBody3D
 {
     [Export]
-    public TacticsControlsResource controls = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    public TacticsControlsResource controls;
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
+
     public TacticsPawnResource resource;
     public TacticsPawnService service;
 
@@ -21,6 +25,8 @@ public partial class TacticsPawn : CharacterBody3D
 
     public override void _Ready()
     {
+        controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
+
         stats = GetNode<Stats>("Expertise/Stats");
         expertise = stats.expertise;
         character = GetNode<TacticsPawnSprite>("Character");

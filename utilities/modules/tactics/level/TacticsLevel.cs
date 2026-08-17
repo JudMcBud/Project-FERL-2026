@@ -10,17 +10,23 @@ public partial class TacticsLevel : Node3D
 {
     #region --- Props ---
     [Export]
-    private TacticsCameraResource camera = GD.Load<TacticsCameraResource>(
-        "res://utilities/models/view/camera/tactics/camera.tres"
-    );
+    private TacticsCameraResource camera;
 
     [Export]
     private float cameraBoundaryRadius = 10;
 
     [Export]
-    private TacticsControlsResource uiControl = GD.Load<TacticsControlsResource>(
-        "res://utilities/models/view/control/tactics/control.tres"
-    );
+    private TacticsControlsResource uiControl;
+
+    private static TacticsCameraResource LoadCameraResource(string path)
+    {
+        return ResourceLoader.Load<TacticsCameraResource>(path) ?? new TacticsCameraResource();
+    }
+
+    private static TacticsControlsResource LoadControlsResource(string path)
+    {
+        return ResourceLoader.Load<TacticsControlsResource>(path) ?? new TacticsControlsResource();
+    }
 
     private TacticsParticipant participant;
 
@@ -35,15 +41,13 @@ public partial class TacticsLevel : Node3D
     #region --- Processing ---
     public override void _Ready()
     {
-        uiControl = GD.Load<TacticsControlsResource>(
+        uiControl = LoadControlsResource(
             "res://utilities/models/view/control/tactics/control.tres"
         );
         if (uiControl == null)
             GD.PushError("TacticsControls needs a ControlResource from /utilities/models");
 
-        camera = GD.Load<TacticsCameraResource>(
-            "res://utilities/models/view/camera/tactics/camera.tres"
-        );
+        camera = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
         if (camera == null)
             GD.PushError("TacticaCamera needs a CameraResource from /utilities/models");
 
