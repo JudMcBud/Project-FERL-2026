@@ -11,7 +11,7 @@ public partial class TacticsTileService : Node3D
         foreach (MeshInstance3D _t in tiles.GetChildren())
         {
             _t.CreateTrimeshCollision();
-            dynamic _staticBody = _t.GetChild<StaticBody3D>(0);
+            TacticsTile _staticBody = (TacticsTile)_t.GetChild<StaticBody3D>(0);
             _staticBody.Position = _t.Position;
 
             _t.Position = Vector3.Zero;
@@ -21,12 +21,7 @@ public partial class TacticsTileService : Node3D
             _staticBody.AddChild(_t);
             _staticBody.SetScript(GD.Load<Script>(TileSource));
 
-            if (_staticBody is TacticsTile)
-                _staticBody.ConfigureTile();
-            else
-                GD.PushError(
-                    "_staticBody is not a TacticsTile. Script: TacticsTileService.cs, Function: TilesIntoStaticBodies, Line: 23"
-                );
+            _staticBody.ConfigureTile();
 
             _staticBody.SetProcess(true);
 

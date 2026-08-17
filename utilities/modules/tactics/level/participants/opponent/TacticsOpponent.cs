@@ -8,8 +8,11 @@ public partial class TacticsOpponent : TacticsParticipant
 
     public override void _Ready()
     {
+        GD.Print("[TacticsOpponent] _Ready begin");
         base._Ready();
+        GD.Print("[TacticsOpponent] Base ready complete");
         opponentService = new TacticsOpponentService(resource, camera, controls, arena);
+        GD.Print("[TacticsOpponent] Service created");
     }
 
     public bool IsPawnConfigured()
@@ -24,7 +27,7 @@ public partial class TacticsOpponent : TacticsParticipant
 
     public void ChaseNearestEnemy()
     {
-        opponentService.ChaseNearestEnemy(this, GetNode("../TacticsPlayer"));
+        opponentService.ChaseNearestEnemy(this, GetNode("%TacticsPlayer"));
     }
 
     public void IsPawnDoneMoving()

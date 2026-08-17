@@ -14,12 +14,16 @@ public partial class TacticsArena : Node3D
 
     public override void _Ready()
     {
+        GD.Print("[TacticsArena] _Ready begin");
         resource =
             ResourceLoader.Load<TacticsArenaResource>(
                 "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
             ) ?? new TacticsArenaResource();
+        GD.Print("[TacticsArena] Resource loaded");
         service = new TacticsArenaService(resource);
+        GD.Print("[TacticsArena] Service created");
         service.Setup(this);
+        GD.Print("[TacticsArena] _Ready complete");
     }
 
     public void ResetAllTileMarkers()

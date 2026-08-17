@@ -26,6 +26,8 @@ public partial class TacticsPawnService : RefCounted
 
     public void Process(TacticsPawn pawn, double delta)
     {
+        // Uncomment for excessive logging
+        // GD.Print($"[TacticsPawnService] Process called for {pawn.Name}");
         pawn.GetNode<TacticsPawnSprite>("Character").RotateSprite(pawn.GlobalBasis);
         movement.MoveAlongPath(pawn, delta);
         animation.StartAnimator(pawn);
