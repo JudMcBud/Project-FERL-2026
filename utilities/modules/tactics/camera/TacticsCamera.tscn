@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ckj1vwm3ee33f"]
 
 [ext_resource type="Script" uid="uid://b7h7d4o1d18kr" path="res://utilities/modules/tactics/camera/TacticsCamera.cs" id="1_xy4qt"]
+[ext_resource type="Resource" uid="uid://d13l15ikv0md8" path="res://utilities/models/view/camera/tactics/camera.tres" id="2_663y5"]
+[ext_resource type="Resource" uid="uid://2cq6msemoms2" path="res://utilities/models/view/control/tactics/control.tres" id="3_hov6j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_egm1s"]
 
@@ -8,8 +10,8 @@
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_xy4qt")
-resource = null
-controls = null
+resource = ExtResource("2_663y5")
+controls = ExtResource("3_hov6j")
 
 [node name="TwistPivot" type="Node3D" parent="." unique_id=1404513283]
 

@@ -29,8 +29,8 @@ public partial class TacticsCameraResource : Resource
     [Export(PropertyHint.Range, "1,100,")]
     public float RotationSpeed
     {
-        get => field;
-        set => field = (float)value / 10.0f;
+        get => rotSpeed;
+        set => rotSpeed = (float)value / 10.0f;
     }
 
     [Export(PropertyHint.Range, "0.01, 1,")]

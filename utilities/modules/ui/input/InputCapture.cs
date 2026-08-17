@@ -7,9 +7,14 @@ public partial class InputCapture : Node3D
     InputCaptureResource resource;
     public InputCaptureService service;
 
-    public InputCapture()
+    private static InputCaptureResource LoadInputCaptureResource(string path)
     {
-        resource = GD.Load<InputCaptureResource>(
+        return ResourceLoader.Load<InputCaptureResource>(path) ?? new InputCaptureResource();
+    }
+
+    public override void _Ready()
+    {
+        resource = LoadInputCaptureResource(
             "res://utilities/models/view/control/input/capture/InputCaptureResource.tres"
         );
         service = new InputCaptureService(resource);

@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://cm4wj5wnruqv6" path="res://utilities/modules/tactics/controls/TacticsControls.cs" id="1_1o7yc"]
 [ext_resource type="Script" uid="uid://cgogd4qkxvnoj" path="res://utilities/modules/ui/hints/InputHints.cs" id="2_37ffe"]
 [ext_resource type="PackedScene" uid="uid://cgwdfdk44oy6" path="res://utilities/modules/ui/input/InputCapture.tscn" id="2_gcv75"]
+[ext_resource type="Resource" uid="uid://2cq6msemoms2" path="res://utilities/models/view/control/tactics/control.tres" id="2_guna4"]
+[ext_resource type="Resource" uid="uid://d13l15ikv0md8" path="res://utilities/models/view/camera/tactics/camera.tres" id="3_6pfjs"]
 [ext_resource type="Texture2D" uid="uid://dk0bf7lcpdxgm" path="res://assets/textures/ui/labels/controlsHints/controls-ui-xbox.png" id="3_gcv75"]
+[ext_resource type="Resource" uid="uid://56hqeulqoi27" path="res://utilities/models/world/combat/participant/participant.tres" id="4_poeeo"]
+[ext_resource type="Resource" uid="uid://boseiifejvpjh" path="res://utilities/models/world/combat/arena/tacticsArenaResource.tres" id="5_g6xet"]
 
 [node name="TacticsControls" type="Control" unique_id=483806842]
 layout_mode = 3
@@ -14,10 +18,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1o7yc")
-controls = null
-tacticsCam = null
-participant = null
-arena = null
+controls = ExtResource("2_guna4")
+tacticsCam = ExtResource("3_6pfjs")
+participant = ExtResource("4_poeeo")
+arena = ExtResource("5_g6xet")
 
 [node name="InputCapture" parent="." unique_id=758626757 instance=ExtResource("2_gcv75")]
 
@@ -29,6 +33,7 @@ offset_bottom = 40.0
 script = ExtResource("2_37ffe")
 
 [node name="ControllerHints" type="TextureRect" parent="Hints" unique_id=1824766386]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 7
@@ -49,6 +54,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Actions" type="VBoxContainer" parent="HBox" unique_id=331555814]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 alignment = 2
