@@ -6,9 +6,7 @@ using Godot.Collections;
 
 public partial class TacticsArenaService : RefCounted
 {
-    public static readonly TacticsTileService TileService = ResourceLoader.Load<TacticsTileService>(
-        "res://utilities/models/world/combat/arena/tileService/TacticsTileService.cs"
-    );
+    public static readonly TacticsTileService TileService = new TacticsTileService();
 
     public TacticsArenaResource resource;
 
@@ -43,14 +41,18 @@ public partial class TacticsArenaService : RefCounted
 
     public void ConfigureTiles(TacticsArena arena)
     {
+        GD.Print("[TacticsArenaService] ConfigureTiles begin");
         arena.GetNode<Node3D>("Tiles").Visible = true;
         Node3D _tiles = arena.GetNode<Node3D>("Tiles");
+        GD.Print($"[TacticsArenaService] Tile count before conversion: {_tiles.GetChildCount()}");
         TileService.TilesIntoStaticbodies(_tiles);
+        GD.Print($"[TacticsArenaService] Tile count after conversion: {_tiles.GetChildCount()}");
     }
 
     public void ProcessSurroundingTiles(TacticsTile rootTile, float height, Array<Node> alliesOnMap)
     {
         List<TacticsTile> _tilesProcessQueue = [rootTile];
+        HashSet<TacticsTile> visitedTiles = new() { rootTile };
 
         while (_tilesProcessQueue.Count() != 0)
         {
@@ -59,25 +61,33 @@ public partial class TacticsArenaService : RefCounted
 
             void _AddTilesToTilesList(TacticsTile _neighbor)
             {
+                if (
+                    _neighbor == null
+                    || _neighbor == _currentTile
+                    || visitedTiles.Contains(_neighbor)
+                )
+                    return;
+
                 _neighbor.pfRoot = _currentTile;
                 _neighbor.pfDistance = _currentTile.pfDistance + 1;
                 _tilesProcessQueue.Add(_neighbor);
+                visitedTiles.Add(_neighbor);
             }
 
             foreach (TacticsTile _neighbor in _currentTile.GetNeighbors(height))
             {
-                if (_neighbor.pfRoot == null && _neighbor != rootTile)
+                if (_neighbor == null || _neighbor == rootTile)
+                    continue;
+
+                if (!_neighbor.IsTaken())
                 {
-                    if (!_neighbor.IsTaken())
+                    _AddTilesToTilesList(_neighbor);
+                }
+                else if (alliesOnMap.Count() > 0)
+                {
+                    if (alliesOnMap.Contains(_neighbor.GetTileOccupier()))
                     {
                         _AddTilesToTilesList(_neighbor);
-                    }
-                    else if (alliesOnMap.Count() <= 0)
-                    {
-                        if (alliesOnMap.Contains(_neighbor.GetTileOccupier()))
-                        {
-                            _AddTilesToTilesList(_neighbor);
-                        }
                     }
                 }
             }
@@ -176,7 +186,7 @@ public partial class TacticsArenaService : RefCounted
 
     public void MarkAttackableTiles(TacticsArena arena, TacticsTile root, float distance)
     {
-        foreach (TacticsTile _t in arena.GetNode("TIles").GetChildren())
+        foreach (TacticsTile _t in arena.GetNode("Tiles").GetChildren())
         {
             bool _hasDist = _t.pfDistance > 0;
             bool _reachable = _t.pfDistance <= distance;

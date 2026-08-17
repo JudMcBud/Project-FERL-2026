@@ -8,13 +8,18 @@ public partial class TacticsTileRaycast : Node3D
     public List<TacticsTile> GetAllNeighbors(float height)
     {
         List<TacticsTile> neighbors = [];
+        TacticsTile parentTile = GetParent<TacticsTile>();
+
         foreach (RayCast3D ray in GetNode("Neighbors").GetChildren())
         {
-            TacticsTile obj = (TacticsTile)ray.GetCollider();
+            TacticsTile obj = ray.GetCollider() as TacticsTile;
+
+            if (obj == null || obj == parentTile)
+                continue;
 
             if (
-                obj != null
-                && Math.Abs(obj.GlobalPosition.Y - GetParent<Node3D>().GlobalPosition.Y) <= height
+                Math.Abs(obj.GlobalPosition.Y - parentTile.GlobalPosition.Y) <= height
+                && !neighbors.Contains(obj)
             )
             {
                 neighbors.Add(obj);

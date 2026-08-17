@@ -41,6 +41,8 @@ public partial class TacticsLevel : Node3D
     #region --- Processing ---
     public override void _Ready()
     {
+        GD.Print("[TacticsLevel] _Ready begin");
+
         uiControl = LoadControlsResource(
             "res://utilities/models/view/control/tactics/control.tres"
         );
@@ -51,16 +53,25 @@ public partial class TacticsLevel : Node3D
         if (camera == null)
             GD.PushError("TacticaCamera needs a CameraResource from /utilities/models");
 
+        GD.Print("[TacticsLevel] Loaded resources");
+
         participant = GetNode<TacticsParticipant>("TacticsParticipant");
         player = GetNode<TacticsPlayer>("TacticsParticipant/TacticsPlayer");
         opponent = GetNode<TacticsOpponent>("TacticsParticipant/TacticsOpponent");
         arena = GetNode<TacticsArena>("TacticsArena");
+        GD.Print("[TacticsLevel] Got required nodes");
 
+        GD.Print("[TacticsLevel] About to configure tiles");
         arena.ConfigureTiles();
+        GD.Print("[TacticsLevel] Tiles configured");
+
         participant.Configure(camera, uiControl);
+        GD.Print("[TacticsLevel] Participant configured");
 
         if (camera.boundaryRadius != cameraBoundaryRadius)
             camera.boundaryRadius = cameraBoundaryRadius;
+
+        GD.Print("[TacticsLevel] _Ready complete");
     }
 
     public override void _PhysicsProcess(double delta)

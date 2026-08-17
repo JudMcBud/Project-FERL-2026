@@ -34,16 +34,16 @@ public partial class Main : Node3D
     #region --- Methods ---
     private void LoadLevel(string levelName)
     {
-        GD.Print("Begin Load Level");
+        // GD.Print("Begin Load Level");
         UnloadLevel();
-        GD.Print("Level Unloaded");
+        // GD.Print("Level Unloaded");
         string levelPath = $"res://stages/tactics/test/{levelName}.tscn";
         levelInstance = GD.Load<PackedScene>(levelPath).Instantiate<TacticsLevel>();
-        GD.Print("levelInstance Loaded");
+        // GD.Print("levelInstance Loaded");
         world.AddChild(levelInstance);
-        GD.Print("levelInstance Added to world");
+        // GD.Print("levelInstance Added to world");
         GetNode<CenterContainer>("UI/MapSelector").Visible = false;
-        GD.Print("Button hidden");
+        // GD.Print("Button hidden");
     }
 
     private void UnloadLevel()
