@@ -63,14 +63,13 @@ public partial class TacticsParticipantService : RefCounted
 
     public bool IsConfigured(Node3D parent)
     {
-        TacticsParticipant participant = parent as TacticsParticipant;
-        return participant.IsConfigured(parent);
+        _ = parent;
+        return resource != null && camera != null && controls != null;
     }
 
     public bool CanAct(Node3D parent)
     {
-        TacticsParticipant participant = parent as TacticsParticipant;
-        return participant.CanAct(parent);
+        return parent != null && turnService.CanAct(parent);
     }
 
     public void ResetTurn(Node3D parent)

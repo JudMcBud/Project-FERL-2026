@@ -11,6 +11,8 @@ public partial class TacticsPawnAnimationService : RefCounted
 
     public void StartAnimator(TacticsPawn pawn)
     {
+        // Uncomment for excessive logging
+        // GD.Print($"[TacticsPawnAnimationService] StartAnimator for {pawn.Name}, moveDir: {pawn.resource.moveDirection}, jumping: {pawn.resource.isJumping}");
         pawn.GetNode<TacticsPawnSprite>("Character")
             .StartAnimator(pawn.resource.moveDirection, pawn.resource.isJumping);
     }
