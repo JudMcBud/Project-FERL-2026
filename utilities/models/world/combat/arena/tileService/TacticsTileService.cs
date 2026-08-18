@@ -8,24 +8,38 @@ public partial class TacticsTileService : Node3D
 
     public void TilesIntoStaticbodies(Node3D tiles)
     {
-        foreach (MeshInstance3D _t in tiles.GetChildren())
+        foreach (MeshInstance3D mesh in tiles.GetChildren())
         {
-            _t.CreateTrimeshCollision();
-            TacticsTile _staticBody = (TacticsTile)_t.GetChild<StaticBody3D>(0);
-            _staticBody.Position = _t.Position;
+            // Create custom tile instead of using CreateTrimeshCollision's StaticBody3D
+            TacticsTile tile = new TacticsTile();
+            tile.Name = "Tile";
 
-            _t.Position = Vector3.Zero;
-            _t.Name = "Tile";
-            _t.RemoveChild(_staticBody);
-            tiles.RemoveChild(_t);
-            _staticBody.AddChild(_t);
-            _staticBody.SetScript(GD.Load<Script>(TileSource));
+            // Generate collision shape
+            mesh.CreateTrimeshCollision();
+            var generatedBody = mesh.GetChild<StaticBody3D>(0);
+            var shape = generatedBody.GetChild<CollisionShape3D>(0);
 
-            _staticBody.ConfigureTile();
+            // Move the shape into custom tile
+            generatedBody.RemoveChild(shape);
+            tile.AddChild(shape);
 
-            _staticBody.SetProcess(true);
+            // Positioning
+            tile.Position = mesh.Position;
+            mesh.Position = Vector3.Zero;
 
-            tiles.AddChild(_staticBody);
+            // Re-parent mesh under tile
+            tiles.RemoveChild(mesh);
+            tile.AddChild(mesh);
+
+            // Configure tile
+            tile.ConfigureTile();
+            tile.SetProcess(true);
+
+            // Add tile to scene
+            tiles.AddChild(tile);
+
+            // Cleanup
+            generatedBody.QueueFree();
         }
     }
 }

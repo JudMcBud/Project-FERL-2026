@@ -27,7 +27,7 @@ public partial class TacticsPawnSprite : Sprite3D
         else
             return;
 
-        animator.Start("IDLE");
+        animator.Start("Idle");
         animationTree.Active = true;
         Texture = GD.Load<Texture2D>(stats.sprite);
         characterUINameLabel.Text = stats.overrideName != null ? stats.overrideName : expertise;
@@ -37,11 +37,11 @@ public partial class TacticsPawnSprite : Sprite3D
     {
         if (moveDirection == Vector3.Zero)
         {
-            animator.Travel("IDLE");
+            animator.Travel("Idle");
         }
         else if (isJumping)
         {
-            animator.Travel("JUMP");
+            animator.Travel("Jump");
         }
     }
 

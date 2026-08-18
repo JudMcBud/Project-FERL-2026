@@ -13,12 +13,9 @@ public partial class Main : Node3D
     #region --- Processing ---
     public override void _Ready()
     {
-        GD.Print("Ready() method begin");
         world = GetNode<Node3D>("World");
         demoMapButton = GetNode<Button>("UI/MapSelector/LoadMap0");
-        GD.Print("Nodes Gotten");
         demoMapButton.Pressed += OnDemoMapButtonPressed;
-        GD.Print("Methods subscribed");
         demoMapButton.GrabFocus();
     }
     #endregion
@@ -26,7 +23,6 @@ public partial class Main : Node3D
     #region --- Signals ---
     private void OnDemoMapButtonPressed()
     {
-        GD.Print("Button Pressed");
         LoadLevel("TestLevel");
     }
     #endregion
@@ -48,7 +44,6 @@ public partial class Main : Node3D
 
     private void UnloadLevel()
     {
-        GD.Print("Unloading Level");
         if (IsInstanceValid(levelInstance))
             levelInstance.QueueFree();
         levelInstance = null;
