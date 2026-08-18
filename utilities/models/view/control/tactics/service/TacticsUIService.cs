@@ -26,7 +26,7 @@ public partial class TacticsUIService : RefCounted
 
     public void SetActionsMenuVisibility(bool v, TacticsPawn p, TacticsControls ctrl)
     {
-        if (!ctrl.GetNode<BoxContainer>("HBoxContainer/Actions").Visible)
+        if (!ctrl.GetNode<BoxContainer>("%Actions").Visible)
         {
             ctrl.GetNode<Button>("HBox/Actions/Move").GrabFocus();
         }

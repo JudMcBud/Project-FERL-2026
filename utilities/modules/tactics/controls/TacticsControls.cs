@@ -57,7 +57,6 @@ public partial class TacticsControls : Control
     #region --- Processing ---
     public override void _Ready()
     {
-        GD.Print("[TacticsControls] _Ready begin");
         controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
         tacticsCam = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
         participant = LoadParticipantResource(
@@ -66,10 +65,8 @@ public partial class TacticsControls : Control
         arena = LoadArenaResource(
             "res://utilities/models/world/combat/arena/tacticsArenaResource.tres"
         );
-        GD.Print("[TacticsControls] Resources loaded");
 
         inputCapture = GetNode<InputCapture>("InputCapture");
-        GD.Print("[TacticsControls] InputCapture found");
 
         service = new TacticsControlsService(
             controls,
@@ -78,16 +75,13 @@ public partial class TacticsControls : Control
             arena,
             inputCapture
         );
-        GD.Print("[TacticsControls] Service created");
         service.Setup(this);
-        GD.Print("[TacticsControls] Service setup complete");
 
         foreach (string action in controls.actions.Keys)
         {
             StringName stringName = controls.actions[action];
             GetAct(action).Pressed += () => Call(stringName);
         }
-        GD.Print("[TacticsControls] _Ready complete");
     }
 
     public override void _PhysicsProcess(double delta)

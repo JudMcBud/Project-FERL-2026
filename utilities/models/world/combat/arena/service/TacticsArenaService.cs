@@ -41,12 +41,9 @@ public partial class TacticsArenaService : RefCounted
 
     public void ConfigureTiles(TacticsArena arena)
     {
-        GD.Print("[TacticsArenaService] ConfigureTiles begin");
         arena.GetNode<Node3D>("Tiles").Visible = true;
         Node3D _tiles = arena.GetNode<Node3D>("Tiles");
-        GD.Print($"[TacticsArenaService] Tile count before conversion: {_tiles.GetChildCount()}");
         TileService.TilesIntoStaticbodies(_tiles);
-        GD.Print($"[TacticsArenaService] Tile count after conversion: {_tiles.GetChildCount()}");
     }
 
     public void ProcessSurroundingTiles(TacticsTile rootTile, float height, Array<Node> alliesOnMap)
