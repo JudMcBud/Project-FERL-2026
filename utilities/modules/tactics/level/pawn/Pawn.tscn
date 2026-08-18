@@ -9,7 +9,7 @@ height = 2.15
 
 [sub_resource type="Animation" id="Animation_ek187"]
 resource_name = "Damage"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,15 +99,18 @@ animation = &"Idle"
 animation = &"Jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_am55u"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjt6q"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6voj"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pdafh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lsjcg"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_onipi"]
@@ -117,12 +120,11 @@ states/Idle/node = SubResource("AnimationNodeAnimation_onipi")
 states/Idle/position = Vector2(337, 100)
 states/Jump/node = SubResource("AnimationNodeAnimation_ek187")
 states/Jump/position = Vector2(467, 100)
-transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_am55u"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wjt6q"), "Idle", "Damage", SubResource("AnimationNodeStateMachineTransition_t6voj"), "Damage", "Idle", SubResource("AnimationNodeStateMachineTransition_pdafh")]
-graph_offset = Vector2(-174, -18)
+transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_am55u"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wjt6q"), "Idle", "Damage", SubResource("AnimationNodeStateMachineTransition_t6voj"), "Damage", "Idle", SubResource("AnimationNodeStateMachineTransition_pdafh"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lsjcg")]
+graph_offset = Vector2(-197.2572, -18)
 
 [node name="Pawn" type="CharacterBody3D" unique_id=531513967]
 script = ExtResource("1_sw154")
-controls = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1889137062]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.6, 0)

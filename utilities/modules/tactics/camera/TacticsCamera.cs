@@ -30,25 +30,19 @@ public partial class TacticsCamera : CharacterBody3D
 
     public override void _Ready()
     {
-        GD.Print("[TacticsCamera] _Ready begin");
         resource = LoadCameraResource("res://utilities/models/view/camera/tactics/camera.tres");
         controls = LoadControlsResource("res://utilities/models/view/control/tactics/control.tres");
-        GD.Print("[TacticsCamera] Resources loaded");
 
         tPivot = GetNode<Node3D>("TwistPivot");
         pPivot = GetNode<Node3D>("TwistPivot/PitchPivot");
         camNode = GetNode<Camera3D>("TwistPivot/PitchPivot/Camera3D");
-        GD.Print("[TacticsCamera] Nodes found");
 
         service = new TacticsCameraService(resource, controls);
-        GD.Print("[TacticsCamera] Service created");
         service.Setup(this, camNode);
-        GD.Print("[TacticsCamera] Service setup complete");
         resource.boundaryCenter = GlobalPosition;
 
         resource.RotateCamera += RotateCamera;
         resource.MoveCamera += MoveCamera;
-        GD.Print("[TacticsCamera] _Ready complete");
     }
 
     public override void _Process(double delta)

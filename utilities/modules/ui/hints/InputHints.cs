@@ -60,12 +60,43 @@ public partial class InputHints : Container
         }
         else
         {
+            float currentX = controllerHints.Position.X;
+            float currentAlpha = controllerHints.Modulate.A;
+
             Tween tween = CreateTween();
             tween.SetParallel(true);
             tween.SetTrans(Tween.TransitionType.Sine);
             tween.SetEase(Tween.EaseType.InOut);
-            tween.TweenProperty(controllerHints, "Position:X", targetX, AnimationDuration);
-            tween.TweenProperty(controllerHints, "Modulate:A", targetAlpha, AnimationDuration);
+
+            // Tween Position.X
+            tween.TweenMethod(
+                Callable.From(
+                    (float x) =>
+                    {
+                        Vector2 pos = controllerHints.Position;
+                        pos.X = x;
+                        controllerHints.Position = pos;
+                    }
+                ),
+                currentX,
+                targetX,
+                AnimationDuration
+            );
+
+            // Tween Modulate.A
+            tween.TweenMethod(
+                Callable.From(
+                    (float a) =>
+                    {
+                        Color mod = controllerHints.Modulate;
+                        mod.A = a;
+                        controllerHints.Modulate = mod;
+                    }
+                ),
+                currentAlpha,
+                targetAlpha,
+                AnimationDuration
+            );
         }
     }
 }

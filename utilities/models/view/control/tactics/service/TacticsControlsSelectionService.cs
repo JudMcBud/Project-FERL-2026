@@ -54,36 +54,45 @@ public partial class TacticsControlsSelectionService : RefCounted
         }
     }
 
+    private static TacticsTile ResolveTileFromHit(Object hit)
+    {
+        if (hit is TacticsTile tile)
+            return tile;
+        if (hit is TacticsPawn pawn)
+            return pawn.GetTile();
+        return null;
+    }
+
     public TacticsPawn SelectHoveredPawn(TacticsControls ctrl)
     {
-        TacticsPawn pawn = (TacticsPawn)inputService.Get3DCanvasMousePosition(2, ctrl);
+        TacticsPawn pawn = inputService.Get3DCanvasMousePosition(2, ctrl) as TacticsPawn;
         TacticsTile tile =
-            pawn == null
-                ? (TacticsTile)inputService.Get3DCanvasMousePosition(1, ctrl)
-                : pawn.GetTile();
+            pawn != null
+                ? pawn.GetTile()
+                : ResolveTileFromHit(inputService.Get3DCanvasMousePosition(1, ctrl));
         arena.OnMarkHoverTile(tile);
         if (pawn != null)
             return pawn;
         else if (tile != null)
-            return (TacticsPawn)tile.GetTileOccupier();
+            return tile.GetTileOccupier() as TacticsPawn;
         else
             return null;
     }
 
     public TacticsTile SelectHoveredTile(TacticsControls ctrl)
     {
-        TacticsPawn pawn = (TacticsPawn)inputService.Get3DCanvasMousePosition(2, ctrl);
+        TacticsPawn pawn = inputService.Get3DCanvasMousePosition(2, ctrl) as TacticsPawn;
         TacticsTile tile =
-            pawn == null
-                ? (TacticsTile)inputService.Get3DCanvasMousePosition(1, ctrl)
-                : pawn.GetTile();
+            pawn != null
+                ? pawn.GetTile()
+                : ResolveTileFromHit(inputService.Get3DCanvasMousePosition(1, ctrl));
         arena.OnMarkHoverTile(tile);
         return tile;
     }
 
     public void SelectNewLocation(TacticsControls ctrl)
     {
-        TacticsTile tile = (TacticsTile)inputService.Get3DCanvasMousePosition(1, ctrl);
+        TacticsTile tile = ResolveTileFromHit(inputService.Get3DCanvasMousePosition(1, ctrl));
         arena.OnMarkHoverTile(tile);
         if (Input.IsActionPressed("uiAccept") && tile != null && tile.reachable)
         {
@@ -102,7 +111,7 @@ public partial class TacticsControlsSelectionService : RefCounted
             participant.attackablePawn.ShowPawnStats(false);
         }
         TacticsTile tile = SelectHoveredTile(ctrl);
-        participant.attackablePawn = tile != null ? (TacticsPawn)tile.GetTileOccupier() : null;
+        participant.attackablePawn = tile != null ? tile.GetTileOccupier() as TacticsPawn : null;
         if (participant.attackablePawn != null)
         {
             controls.SetActionsMenuVisibilityHandler(true, participant.attackablePawn);

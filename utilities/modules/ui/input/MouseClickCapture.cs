@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Godot.Collections;
 
 public partial class MouseClickCapture : InputCapture
 {
@@ -21,7 +22,10 @@ public partial class MouseClickCapture : InputCapture
             (uint)collisionMask,
             []
         );
-        return GetWorld3D().DirectSpaceState.IntersectRay(rayQuery)["collider"];
+        Dictionary result = GetWorld3D().DirectSpaceState.IntersectRay(rayQuery);
+        if (result == null || result.Count == 0 || !result.ContainsKey("collider"))
+            return null;
+        return (CollisionObject3D)result["collider"];
     }
     #endregion
 }

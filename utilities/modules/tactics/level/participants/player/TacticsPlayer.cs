@@ -8,11 +8,8 @@ public partial class TacticsPlayer : TacticsParticipant
 
     public override void _Ready()
     {
-        GD.Print("[TacticsPlayer] _Ready begin");
         base._Ready();
-        GD.Print("[TacticsPlayer] Base ready complete");
         playerService = new TacticsPlayerService(resource, camera, controls, arena);
-        GD.Print("[TacticsPlayer] Service created");
     }
 
     public override void _PhysicsProcess(double delta)
