@@ -16,6 +16,7 @@ controls = ExtResource("3_hov6j")
 [node name="TwistPivot" type="Node3D" parent="." unique_id=1404513283]
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot" unique_id=1965394636]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot" unique_id=2011980409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
@@ -24,3 +25,4 @@ fov = 30.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286206590]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("BoxShape3D_egm1s")
+debug_color = Color(1, 0, 0, 0.41960785)

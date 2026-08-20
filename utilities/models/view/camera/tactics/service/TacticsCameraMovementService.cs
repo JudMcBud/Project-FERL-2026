@@ -14,6 +14,7 @@ public partial class TacticsCameraMovementService : RefCounted
 
     public TacticsCameraResource resource;
     public TacticsControlsResource controls;
+    private string lastCollisionReport = string.Empty;
 
     public TacticsCameraMovementService(
         TacticsCameraResource _resource,
@@ -57,7 +58,10 @@ public partial class TacticsCameraMovementService : RefCounted
                 camera.Velocity = Vector3.Zero;
             }
             else
+            {
                 camera.MoveAndSlide();
+                ReportSlideCollisions(camera);
+            }
         }
     }
 
@@ -87,6 +91,7 @@ public partial class TacticsCameraMovementService : RefCounted
         camera.Velocity = vel;
         camera.UpDirection = Vector3.Up;
         camera.MoveAndSlide();
+        ReportSlideCollisions(camera);
 
         // Don't know what this line does but it was translated over;
         camera.Velocity = camera.Velocity;
@@ -103,6 +108,41 @@ public partial class TacticsCameraMovementService : RefCounted
             resource.smoothing * FastSmoothing * (float)delta
         );
         if (camera.Velocity.Length() > MinThreshold)
+        {
             camera.MoveAndSlide();
+            ReportSlideCollisions(camera);
+        }
+    }
+
+    private void ReportSlideCollisions(TacticsCamera camera)
+    {
+        if (camera.GetSlideCollisionCount() == 0)
+        {
+            lastCollisionReport = string.Empty;
+            return;
+        }
+
+        for (int index = 0; index < camera.GetSlideCollisionCount(); index++)
+        {
+            KinematicCollision3D collision = camera.GetSlideCollision(index);
+            GodotObject collider = collision.GetCollider();
+            string colliderName = collider is Node colliderNode
+                ? colliderNode.GetPath().ToString()
+                : collider?.ToString() ?? "<freed object>";
+            string collisionLayer = collider is CollisionObject3D collisionObject
+                ? collisionObject.CollisionLayer.ToString()
+                : "n/a";
+            string report =
+                $"TacticsCamera collision: collider={colliderName}, "
+                + $"type={collider?.GetClass() ?? "<null>"}, "
+                + $"layer={collisionLayer}, shape={collision.GetColliderShape()}, "
+                + $"normal={collision.GetNormal()}, position={collision.GetPosition()}";
+
+            if (report != lastCollisionReport)
+            {
+                GD.PushWarning(report);
+                lastCollisionReport = report;
+            }
+        }
     }
 }

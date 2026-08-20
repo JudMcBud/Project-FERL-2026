@@ -30,6 +30,7 @@ public partial class TacticsParticipantTurnService : RefCounted
             Godot.Collections.Array<Node> playerChildren = player.GetChildren();
             Node3D firstPlayerChild = (Node3D)playerChildren.First();
             camera.target = firstPlayerChild;
+            resource.turnJustStarted = false;
         }
 
         controls.MoveCameraHandler(delta);

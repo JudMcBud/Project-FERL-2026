@@ -16,6 +16,8 @@ public partial class InputCaptureService : RefCounted
 
     public void ProcessInput(InputEvent e)
     {
+        GD.Print($"[InputCaptureService] Input received: {e.GetType().Name} | {e.AsText()}");
+
         if (e is InputEventMouseButton mouseButton)
         {
             // --- Mouse Buttons ---
@@ -72,11 +74,15 @@ public partial class InputCaptureService : RefCounted
                 {
                     if (key.IsAction(action))
                     {
-                        InputCaptureResource.camDirection = Input.GetVector(
+                        Vector2 inputDirection = Input.GetVector(
                             "cameraLeft",
                             "cameraRight",
                             "cameraForward",
                             "cameraBackwards"
+                        );
+                        InputCaptureResource.camDirection = new Vector2(
+                            inputDirection.X,
+                            -inputDirection.Y
                         );
                         return;
                     }
@@ -90,11 +96,15 @@ public partial class InputCaptureService : RefCounted
                     if (key.IsActionReleased(action))
                     {
                         // Recalculate camDirection after key release
-                        InputCaptureResource.camDirection = Input.GetVector(
+                        Vector2 inputDirection = Input.GetVector(
                             "cameraLeft",
                             "cameraRight",
                             "cameraForward",
                             "cameraBackwards"
+                        );
+                        InputCaptureResource.camDirection = new Vector2(
+                            inputDirection.X,
+                            -inputDirection.Y
                         );
                         return;
                     }
@@ -118,7 +128,7 @@ public partial class InputCaptureService : RefCounted
                 if (magnitude > InputCaptureResource.ControllerDeadzone)
                     InputCaptureResource.camDirection = new Vector2(
                         InputCaptureResource.leftStickX,
-                        InputCaptureResource.leftStickY
+                        -InputCaptureResource.leftStickY
                     );
                 else
                     InputCaptureResource.camDirection = Vector2.Zero;
@@ -150,6 +160,13 @@ public partial class InputCaptureService : RefCounted
                 // Future functionality can go here
             }
         }
+
+        GD.Print(
+            $"[InputCaptureService] State: cameraDirection={InputCaptureResource.camDirection}, "
+                + $"leftStick=({InputCaptureResource.leftStickX}, {InputCaptureResource.leftStickY}), "
+                + $"rightStick=({InputCaptureResource.rightStickX}, {InputCaptureResource.rightStickY}), "
+                + $"freeLookPressed={InputCaptureResource.freeLookPressed}"
+        );
     }
 
     public void HandleInput(InputEvent e)
