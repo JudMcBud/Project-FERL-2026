@@ -27,6 +27,10 @@ public partial class TacticsControlsInputService : RefCounted
     public void HandleInput(InputEvent e)
     {
         controls.isJoystick = e is InputEventJoypadButton || e is InputEventJoypadMotion;
+        GD.Print(
+            $"[TacticsControlsInputService] {e.GetType().Name} received; "
+                + $"device={(controls.isJoystick ? "Controller" : "Mouse/Keyboard")}"
+        );
     }
 
     public Object Get3DCanvasMousePosition(int collisionMask, TacticsControls ctrl)

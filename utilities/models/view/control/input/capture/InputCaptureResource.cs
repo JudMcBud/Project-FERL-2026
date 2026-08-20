@@ -23,7 +23,7 @@ public partial class InputCaptureResource : Resource
     [
         "cameraLeft",
         "cameraRight",
-        "cameraForwards",
+        "cameraForward",
         "cameraBackwards",
     ];
     #endregion

@@ -91,7 +91,9 @@ public partial class TacticsControls : Control
 
     public override void _Input(InputEvent @event)
     {
+        GD.Print($"[TacticsControls] Input received: {@event.GetType().Name} | {@event.AsText()}");
         service.HandleInput(@event);
+        inputCapture.Input(@event);
     }
     #endregion
 

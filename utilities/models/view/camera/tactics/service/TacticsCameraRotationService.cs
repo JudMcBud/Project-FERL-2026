@@ -38,12 +38,8 @@ public partial class TacticsCameraRotationService : RefCounted
     {
         Quaternion currentQuatT = Quaternion.FromEuler(tPivot.Rotation);
         Quaternion currentQuatP = Quaternion.FromEuler(pPivot.Rotation);
-        Vector3 destinationT = new Vector3(
-            Mathf.DegToRad(TacticsCameraResource.xRotation),
-            Mathf.DegToRad(TacticsCameraResource.yRotation),
-            0
-        );
-        Vector3 destinationP = new Vector3(0, 0, resource.zRotation);
+        Vector3 destinationT = new Vector3(0, Mathf.DegToRad(TacticsCameraResource.yRotation), 0);
+        Vector3 destinationP = new Vector3(Mathf.DegToRad(TacticsCameraResource.xRotation), 0, 0);
         Quaternion targetQuatT = Quaternion.FromEuler(destinationT);
         Quaternion targetQuatP = Quaternion.FromEuler(destinationP);
 
@@ -191,7 +187,7 @@ public partial class TacticsCameraRotationService : RefCounted
         tween
             .TweenProperty(
                 camera.tPivot,
-                "RotationDegrees",
+                "rotation_degrees",
                 targetRotation,
                 resource.quadSnapDuration
             )
@@ -200,29 +196,27 @@ public partial class TacticsCameraRotationService : RefCounted
             .Parallel()
             .TweenProperty(
                 camera.pPivot,
-                "RotationDegrees:X",
+                "rotation_degrees:x",
                 resource.zRotation,
                 resource.quadSnapDuration
             )
             .SetTrans(Tween.TransitionType.Sine);
         tween.TweenCallback(
-            Callable.From(
-                (TacticsCamera camera) =>
-                {
-                    camera.tPivot.RotationDegrees = new Vector3(
-                        camera.tPivot.RotationDegrees.Y % 360.0f,
+            Callable.From(() =>
+            {
+                camera.tPivot.RotationDegrees = new Vector3(
+                    camera.tPivot.RotationDegrees.X,
+                    camera.tPivot.RotationDegrees.Y % 360.0f,
+                    camera.tPivot.RotationDegrees.Z
+                );
+                if (camera.tPivot.RotationDegrees.Y < 0)
+                    new Vector3(
                         camera.tPivot.RotationDegrees.X,
+                        camera.tPivot.RotationDegrees.Y + 360.0f,
                         camera.tPivot.RotationDegrees.Z
                     );
-                    if (camera.tPivot.RotationDegrees.Y < 0)
-                        new Vector3(
-                            camera.tPivot.RotationDegrees.Y + 360.0f,
-                            camera.tPivot.RotationDegrees.X,
-                            camera.tPivot.RotationDegrees.Z
-                        );
-                    resource.isSnappingToQuad = false;
-                }
-            )
+                resource.isSnappingToQuad = false;
+            })
         );
 
         TacticsCameraResource.yRotation = (int)targetRotation.Y % 360;
