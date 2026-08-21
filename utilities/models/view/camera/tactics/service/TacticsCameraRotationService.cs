@@ -122,10 +122,10 @@ public partial class TacticsCameraRotationService : RefCounted
         float rightStickY = InputCaptureResource.rightStickY;
 
         Vector2 input = Vector2.Zero;
-        if (Math.Abs(rightStickX) > InputCaptureResource.rightStickX)
+        if (Math.Abs(rightStickX) > InputCaptureResource.ControllerDeadzone)
             input.X =
                 -rightStickX * resource.RotationSpeed * InputCaptureResource.RightStickSensitivity;
-        if (Math.Abs(rightStickY) > InputCaptureResource.rightStickY)
+        if (Math.Abs(rightStickY) > InputCaptureResource.ControllerDeadzone)
             input.Y =
                 -rightStickY * resource.RotationSpeed * InputCaptureResource.RightStickSensitivity;
 
@@ -143,12 +143,12 @@ public partial class TacticsCameraRotationService : RefCounted
         pPivot.RotateX(input.Y * FreeLookRotationFactor * (float)delta);
         // I may have the X and Y Rotations swapped incorrectly here
         pPivot.Rotation = new Vector3(
-            pPivot.Rotation.Y,
             Math.Clamp(
                 pPivot.Rotation.X,
                 Mathf.DegToRad(MinVertRotation),
                 Mathf.DegToRad(MaxVertRotation)
             ),
+            pPivot.Rotation.Y,
             pPivot.Rotation.Z
         );
     }
@@ -163,7 +163,8 @@ public partial class TacticsCameraRotationService : RefCounted
     {
         float rightStickX = InputCaptureResource.rightStickX;
         float rightStickY = InputCaptureResource.rightStickY;
-        return Math.Abs(rightStickX) > InputCaptureResource.ControllerDeadzone;
+        return Math.Abs(rightStickX) > InputCaptureResource.ControllerDeadzone
+            || Math.Abs(rightStickY) > InputCaptureResource.ControllerDeadzone;
     }
 
     public void SnapToNearestQuadrant(TacticsCamera camera)
