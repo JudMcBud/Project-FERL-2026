@@ -139,7 +139,7 @@ public partial class InputCaptureService : RefCounted
                 if (Math.Abs(joypadMotion.AxisValue) > InputCaptureResource.ControllerDeadzone)
                 {
                     InputCaptureResource.rightStickX = -Input.GetJoyAxis(0, JoyAxis.RightX);
-                    InputCaptureResource.rightStickY = -Input.GetJoyAxis(0, JoyAxis.RightY);
+                    InputCaptureResource.rightStickY = Input.GetJoyAxis(0, JoyAxis.RightY);
                 }
                 else if (Math.Abs(joypadMotion.AxisValue) < InputCaptureResource.ControllerDeadzone)
                 {
