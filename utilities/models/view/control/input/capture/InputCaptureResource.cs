@@ -34,7 +34,7 @@ public partial class InputCaptureResource : Resource
     [Export]
     public float mouseSensitivity = 1.0f;
 
-    public const float ControllerDeadzone = 0.05f;
+    public const float ControllerDeadzone = 0.1f;
     public const float RightStickSensitivity = 1.0f;
 
     [Export]
