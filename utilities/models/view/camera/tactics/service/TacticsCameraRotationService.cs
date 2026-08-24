@@ -230,7 +230,7 @@ public partial class TacticsCameraRotationService : RefCounted
     public Vector3 CalculateNearestQuadrant(TacticsCamera camera)
     {
         float currentRotation = camera.tPivot.RotationDegrees.Y;
-        Array<int> quadrants = [45, 135, 225, 315];
+        Array<int> quadrants = [0, 45, 90, 135, 180, 225, 270, 315];
 
         currentRotation = currentRotation % 360.0f;
         if (currentRotation < 0)
