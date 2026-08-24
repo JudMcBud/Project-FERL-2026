@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_bdcfc")
 boundaryRadius = 10000.0
+VerticalRotation = -45
 metadata/_custom_type_script = "uid://cx0ajut1ueqkb"
