@@ -43,19 +43,29 @@ public partial class TacticsCameraMovementService : RefCounted
             resource.targetVelocity * VelocitySmoothing,
             resource.smoothing * DeltaSmoothing * (float)delta
         );
+        camera.Velocity = new Vector3(camera.Velocity.X, 0.0f, camera.Velocity.Z);
+        float maximumSpeed = resource.targetVelocity.Length() * resource.maximumSpeed;
+        if (camera.Velocity.Length() > maximumSpeed)
+            camera.Velocity = camera.Velocity.Normalized() * maximumSpeed;
 
         if (camera.Velocity.Length() > MinThreshold)
         {
             Vector3 newPosition = camera.GlobalPosition + camera.Velocity * (float)delta;
             Vector3 distanceFromCenter = newPosition - resource.boundaryCenter;
+            distanceFromCenter.Y = 0.0f;
 
             if (distanceFromCenter.Length() > resource.boundaryRadius)
             {
                 Vector3 clampedPosition =
                     resource.boundaryCenter
                     + distanceFromCenter.Normalized() * resource.boundaryRadius;
+                clampedPosition.Y = camera.GlobalPosition.Y;
                 camera.GlobalPosition = clampedPosition;
-                camera.Velocity = Vector3.Zero;
+
+                Vector3 boundaryNormal = distanceFromCenter.Normalized();
+                float outwardVelocity = camera.Velocity.Dot(boundaryNormal);
+                if (outwardVelocity > 0.0f)
+                    camera.Velocity -= boundaryNormal * outwardVelocity;
             }
             else
             {

@@ -37,6 +37,7 @@ public partial class TacticsCameraResource : Resource
     public float smoothing = 0.1f;
 
     public Vector3 targetVelocity = Vector3.Zero;
+    public float maximumSpeed = 2f;
 
     public Node3D target = null;
     #endregion
