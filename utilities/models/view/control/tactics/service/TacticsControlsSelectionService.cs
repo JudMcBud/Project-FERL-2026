@@ -42,7 +42,7 @@ public partial class TacticsControlsSelectionService : RefCounted
         else
             ctrl.currentPawn.ShowPawnStats(true);
 
-        if (Input.IsActionPressed("uiAccept") && ctrl.currentPawn.CanAct())
+        if (Input.IsActionPressed("ui_accept") && ctrl.currentPawn.CanAct())
         {
             if (player.GetChildren().Contains(ctrl.currentPawn))
             {
@@ -94,7 +94,7 @@ public partial class TacticsControlsSelectionService : RefCounted
     {
         TacticsTile tile = ResolveTileFromHit(inputService.Get3DCanvasMousePosition(1, ctrl));
         arena.OnMarkHoverTile(tile);
-        if (Input.IsActionPressed("uiAccept") && tile != null && tile.reachable)
+        if (Input.IsActionPressed("ui_accept") && tile != null && tile.reachable)
         {
             ctrl.currentPawn.resource.pathfindingTilestack = arena.OnGetPathfindingTileStack(tile);
             tCam.target = tile;
@@ -117,7 +117,7 @@ public partial class TacticsControlsSelectionService : RefCounted
             controls.SetActionsMenuVisibilityHandler(true, participant.attackablePawn);
             participant.attackablePawn.ShowPawnStats(true);
         }
-        if (Input.IsActionJustPressed("uiAccept") && tile != null && tile.attackable)
+        if (Input.IsActionJustPressed("ui_accept") && tile != null && tile.attackable)
         {
             tCam.target = participant.attackablePawn;
             participant.stage = TacticsParticipantResource.Stage.Attack;

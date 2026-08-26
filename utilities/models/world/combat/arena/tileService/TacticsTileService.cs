@@ -13,14 +13,19 @@ public partial class TacticsTileService : Node3D
             // Create custom tile instead of using CreateTrimeshCollision's StaticBody3D
             TacticsTile tile = new TacticsTile();
             tile.Name = "Tile";
+            tile.CollisionLayer = 1;
 
             // Generate collision shape
             mesh.CreateTrimeshCollision();
             var generatedBody = mesh.GetChild<StaticBody3D>(0);
-            var shape = generatedBody.GetChild<CollisionShape3D>(0);
+            var generatedShape = generatedBody.GetChild<CollisionShape3D>(0);
 
-            // Move the shape into custom tile
-            generatedBody.RemoveChild(shape);
+            // Copy the generated shape into the custom tile body.
+            var shape = new CollisionShape3D
+            {
+                Shape = generatedShape.Shape,
+                Transform = generatedShape.Transform,
+            };
             tile.AddChild(shape);
 
             // Positioning
@@ -29,6 +34,7 @@ public partial class TacticsTileService : Node3D
 
             // Re-parent mesh under tile
             tiles.RemoveChild(mesh);
+            mesh.Name = "Tile";
             tile.AddChild(mesh);
 
             // Configure tile
@@ -39,6 +45,7 @@ public partial class TacticsTileService : Node3D
             tiles.AddChild(tile);
 
             // Cleanup
+            generatedShape.QueueFree();
             generatedBody.QueueFree();
         }
     }
