@@ -39,10 +39,11 @@ public partial class TacticsCameraZoomService : RefCounted
     public void ResetCamZoom(Camera3D camNode, TacticsCamera camera)
     {
         resource.targetFOV = TacticsConfig.view["defaultTCamZoom"];
+        resource.currentFOV = resource.targetFOV;
 
         Tween tween = camera.CreateTween();
         tween
-            .TweenProperty(camNode, "Fov", resource.targetFOV, resource.zoomDuration)
+            .TweenProperty(camNode, "fov", resource.targetFOV, resource.zoomDuration)
             .SetTrans(Tween.TransitionType.Sine);
     }
 }

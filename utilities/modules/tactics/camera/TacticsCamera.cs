@@ -74,6 +74,6 @@ public partial class TacticsCamera : CharacterBody3D
 
     public void ResetCamZoom()
     {
-        service.zoom.ResetCamZoom(camNode, this);
+        service.ResetCamZoom();
     }
 }
