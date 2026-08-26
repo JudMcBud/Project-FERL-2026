@@ -124,6 +124,7 @@ transitions = ["Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(-197.2572, -18)
 
 [node name="Pawn" type="CharacterBody3D" unique_id=531513967]
+collision_layer = 2
 script = ExtResource("1_sw154")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1889137062]
