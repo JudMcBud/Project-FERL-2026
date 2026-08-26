@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_bdcfc")
+zoomDuration = 0.3
+minZoom = 20.0
+maxZoom = 45.0
 boundaryRadius = 10000.0
 VerticalRotation = -45
 metadata/_custom_type_script = "uid://cx0ajut1ueqkb"

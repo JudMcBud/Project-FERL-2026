@@ -16,6 +16,7 @@ public partial class InputCaptureResource : Resource
     public Vector2 mousePosition = Vector2.Zero;
     public static Vector2 camDirection;
     public static bool freeLookPressed = false;
+    public static ulong freeLookResetThresholdMilliseconds = 300;
     #endregion
 
     #region Mapping

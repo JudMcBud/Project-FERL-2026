@@ -6,6 +6,7 @@ using Godot;
 
 public partial class InputCaptureService : RefCounted
 {
+    private ulong freeLookPressedAt;
     InputCaptureResource resource;
     public float FlRotSpeedDivider = 0.25f;
 
@@ -26,6 +27,7 @@ public partial class InputCaptureService : RefCounted
                 // Free look toggle
                 if (mouseButton.IsAction("cameraFreeLook"))
                 {
+                    freeLookPressedAt = Time.GetTicksMsec();
                     InputCaptureResource.freeLookPressed = true;
                     if (!TacticsCameraResource.isRotating)
                         TacticsCameraResource.inFreeLook = true;
@@ -40,7 +42,17 @@ public partial class InputCaptureService : RefCounted
             {
                 // Free look toggle
                 if (e.IsActionReleased("cameraFreeLook"))
+                {
+                    if (
+                        InputCaptureResource.freeLookPressed
+                        && Time.GetTicksMsec() - freeLookPressedAt
+                            < InputCaptureResource.freeLookResetThresholdMilliseconds
+                    )
+                    {
+                        TacticsCamera.service.ResetCamZoom();
+                    }
                     InputCaptureResource.freeLookPressed = false;
+                }
             }
         }
         if (e is InputEventMouseMotion mouseMotion)

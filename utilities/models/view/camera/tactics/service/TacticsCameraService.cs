@@ -11,6 +11,8 @@ public partial class TacticsCameraService : RefCounted
     public TacticsCameraZoomService zoom;
     public TacticsCameraRotationService rotate;
     public TacticsCameraPanningService pan;
+    private TacticsCamera camera;
+    private Camera3D camNode;
 
     public const int DeltaSmoothing = 10;
     public const float MinVel = 0.01f;
@@ -27,6 +29,8 @@ public partial class TacticsCameraService : RefCounted
 
     public void Setup(TacticsCamera camera, Camera3D camNode)
     {
+        this.camera = camera;
+        this.camNode = camNode;
         if (controls == null)
         {
             GD.PushError(
@@ -42,6 +46,11 @@ public partial class TacticsCameraService : RefCounted
             resource.targetFOV = camNode.Fov;
             resource.viewportSize = (Vector2I)camera.GetViewport().GetVisibleRect().Size;
         }
+    }
+
+    public void ResetCamZoom()
+    {
+        zoom.ResetCamZoom(camNode, camera);
     }
 
     public void Process(double delta, TacticsCamera camera)

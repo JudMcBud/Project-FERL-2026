@@ -63,7 +63,7 @@ public partial class TacticsCameraResource : Resource
     public float minZoom = 1.0f;
 
     [Export(PropertyHint.Range, "10.0, 100,")]
-    public float maxZoom = 10.0f;
+    public float maxZoom = 100.0f;
 
     public float currentFOV = 50.0f;
     public float targetFOV = 50.0f;
