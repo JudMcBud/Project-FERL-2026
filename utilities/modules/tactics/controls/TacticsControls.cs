@@ -168,7 +168,7 @@ public partial class TacticsControls : Control
         service.PlayerWantsToWait();
     }
 
-    public void PLayerWantsToSkipTurn()
+    public void PlayerWantsToSkipTurn()
     {
         service.PlayerWantsToSkipTurn();
     }

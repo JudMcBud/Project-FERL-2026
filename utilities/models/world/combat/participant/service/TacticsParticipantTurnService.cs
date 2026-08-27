@@ -79,13 +79,8 @@ public partial class TacticsParticipantTurnService : RefCounted
     {
         resource.targets = participant.GetNode("%TacticsPlayer");
         controls.SetActionsMenuVisibilityHandler(false, null);
-        bool isPlayerAction =
-            resource.stage == TacticsParticipantResource.Stage.SelectPawn
-            || resource.stage == TacticsParticipantResource.Stage.ShowMovements
-            || resource.stage == TacticsParticipantResource.Stage.ShowActions
-            || resource.stage == TacticsParticipantResource.Stage.SelectLocation;
-        if (isPlayerAction)
-            resource.stage = TacticsParticipantResource.Stage.SelectPawn;
+        if ((int)resource.stage > 4)
+            resource.stage = 0;
 
         switch (resource.stage)
         {

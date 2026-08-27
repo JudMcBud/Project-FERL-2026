@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://c4alkabndjo6r"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_jds52"]
+
+[resource]
+script = ExtResource("1_jds52")
+overrideName = "Skeleton Generic"
+expertise = "Skeleton"
+strategy = 1
+sprite = "res://assets/textures/actor/mob/chr_pawn_skeleton.png"
+maxHealth = 20
+attackPower = 7
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

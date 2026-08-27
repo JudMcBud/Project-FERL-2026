@@ -11,17 +11,17 @@ public partial class TacticsParticipantResource : Resource
     #region Stage Selection
     public enum Stage
     {
-        SelectPawn,
-        ShowActions,
-        ShowMovements,
-        SelectLocation,
-        MovePawn,
-        DisplayTargets,
-        SelectAttackTarget,
-        Attack,
+        SelectPawn = 0,
+        ShowActions = 1,
+        ShowMovements = 2,
+        SelectLocation = 3,
+        MovePawn = 4,
+        DisplayTargets = 5,
+        SelectAttackTarget = 6,
+        Attack = 7,
     }
 
-    public Stage stage = Stage.SelectPawn;
+    public Stage stage = 0;
     #endregion
 
     public TacticsPawn currentPawn = null;

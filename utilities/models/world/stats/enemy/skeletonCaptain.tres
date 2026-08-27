@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://dh2orviui5gx3"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_o4kvq"]
+
+[resource]
+script = ExtResource("1_o4kvq")
+overrideName = "Skeleton Captain Generic"
+expertise = "Skeleton Captain"
+strategy = 2
+sprite = "res://assets/textures/actor/mob/chr_pawn_skeleton_cpt.png"
+movement = 2
+maxHealth = 45
+attackPower = 12
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

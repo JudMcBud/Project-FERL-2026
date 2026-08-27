@@ -22,7 +22,7 @@ public partial class TacticsParticipantCombatService : RefCounted
 
     public void AttackPawn(double delta, bool isPlayer)
     {
-        if (resource.attackablePawn != null)
+        if (resource.attackablePawn == null)
         {
             resource.currentPawn.resource.canAttack = false;
         }
