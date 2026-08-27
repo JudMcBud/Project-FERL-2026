@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://bm0guwuqu2epp"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_a3fwk"]
+
+[resource]
+script = ExtResource("1_a3fwk")
+overrideName = "Archer Generic"
+expertise = "Archer"
+strategy = 1
+sprite = "res://assets/textures/actor/character/chr_pawn_archer.png"
+jump = 3
+maxHealth = 35
+attackRange = 2
+attackPower = 13
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

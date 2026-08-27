@@ -9,6 +9,12 @@
 [ext_resource type="Script" uid="uid://dbtsdtvib6685" path="res://utilities/modules/tactics/level/participants/opponent/TacticsOpponent.cs" id="5_8eixq"]
 [ext_resource type="PackedScene" uid="uid://cv3xt4upevh0r" path="res://utilities/modules/tactics/level/pawn/Pawn.tscn" id="7_lvksp"]
 [ext_resource type="PackedScene" uid="uid://bmk5k17awap4l" path="res://utilities/modules/stats/expertise/Expertise.tscn" id="8_0ywh7"]
+[ext_resource type="Resource" uid="uid://bm0guwuqu2epp" path="res://utilities/models/world/stats/hero/archer.tres" id="9_17s1p"]
+[ext_resource type="Resource" uid="uid://co6ebqo0pma22" path="res://utilities/models/world/stats/hero/alchemist.tres" id="10_v0eot"]
+[ext_resource type="Resource" uid="uid://ducaha6i5h2tl" path="res://utilities/models/world/stats/hero/cleric.tres" id="11_ta3qx"]
+[ext_resource type="Resource" uid="uid://c4alkabndjo6r" path="res://utilities/models/world/stats/enemy/skeleton.tres" id="13_uscqy"]
+[ext_resource type="Resource" uid="uid://31uit1f6vd7g" path="res://utilities/models/world/stats/enemy/skeletonMage.tres" id="14_at0db"]
+[ext_resource type="Resource" uid="uid://dh2orviui5gx3" path="res://utilities/models/world/stats/enemy/skeletonCaptain.tres" id="15_0ld81"]
 
 [node name="TacticsLevel" type="Node3D" unique_id=426331364]
 script = ExtResource("1_51acx")
@@ -26,15 +32,70 @@ unique_name_in_owner = true
 script = ExtResource("4_p3snc")
 
 [node name="Pawn" parent="TacticsParticipant/TacticsPlayer" unique_id=531513967 instance=ExtResource("7_lvksp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.461, 2.511, -3.364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -3.5)
 
 [node name="Expertise" parent="TacticsParticipant/TacticsPlayer/Pawn" unique_id=574093845 instance=ExtResource("8_0ywh7")]
+
+[node name="Pawn2" parent="TacticsParticipant/TacticsPlayer" unique_id=1799977013 instance=ExtResource("7_lvksp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 2.5, -4.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsPlayer/Pawn2" unique_id=1004528077 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("9_17s1p")
+
+[node name="Pawn3" parent="TacticsParticipant/TacticsPlayer" unique_id=299288025 instance=ExtResource("7_lvksp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.5, -5.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsPlayer/Pawn3" unique_id=604040206 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("10_v0eot")
+
+[node name="Pawn4" parent="TacticsParticipant/TacticsPlayer" unique_id=2082828089 instance=ExtResource("7_lvksp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.5, -6.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsPlayer/Pawn4" unique_id=2013038671 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("11_ta3qx")
 
 [node name="TacticsOpponent" type="Node3D" parent="TacticsParticipant" unique_id=1566975484]
 unique_name_in_owner = true
 script = ExtResource("5_8eixq")
 
 [node name="Pawn" parent="TacticsParticipant/TacticsOpponent" unique_id=1655609823 instance=ExtResource("7_lvksp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38, -0.025, 5.531)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.5, 0, 6.5)
 
 [node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn" unique_id=709990829 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("13_uscqy")
+
+[node name="Pawn2" parent="TacticsParticipant/TacticsOpponent" unique_id=1477786090 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.5, 0, 8.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn2" unique_id=1253131739 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("14_at0db")
+
+[node name="Pawn3" parent="TacticsParticipant/TacticsOpponent" unique_id=587252362 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.5, 0, 7.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn3" unique_id=2106384642 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("13_uscqy")
+
+[node name="Pawn4" parent="TacticsParticipant/TacticsOpponent" unique_id=1026167787 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.5, 0, 7.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn4" unique_id=1521022908 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("15_0ld81")
+
+[node name="Pawn5" parent="TacticsParticipant/TacticsOpponent" unique_id=934259512 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5, 0.5, 5.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn5" unique_id=1751188800 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("13_uscqy")
+
+[node name="Pawn6" parent="TacticsParticipant/TacticsOpponent" unique_id=1000700195 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.5, 0, 6.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn6" unique_id=1568208150 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("13_uscqy")
+
+[node name="Pawn7" parent="TacticsParticipant/TacticsOpponent" unique_id=1730932348 instance=ExtResource("7_lvksp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5, 0, 8.5)
+
+[node name="Expertise" parent="TacticsParticipant/TacticsOpponent/Pawn7" unique_id=918060531 instance=ExtResource("8_0ywh7")]
+startingStats = ExtResource("14_at0db")

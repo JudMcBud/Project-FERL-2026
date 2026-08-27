@@ -6,6 +6,9 @@ public partial class TacticsPawnCombatService : RefCounted
 {
     public bool AttackTargetPawn(TacticsPawn pawn, TacticsPawn targetPawn, double delta)
     {
+        if (pawn == null || targetPawn == null || pawn.service?.movement == null)
+            return false;
+
         pawn.service.movement.LookAtDirection(
             pawn,
             targetPawn.GlobalPosition - pawn.GlobalPosition

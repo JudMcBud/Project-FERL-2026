@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://co6ebqo0pma22"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_yi0ap"]
+
+[resource]
+script = ExtResource("1_yi0ap")
+overrideName = "Alchemist Generic"
+expertise = "Alchemist"
+strategy = 3
+sprite = "res://assets/textures/actor/character/chr_pawn_chemist.png"
+jump = 2
+maxHealth = 30
+attackRange = 2
+attackPower = 13
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

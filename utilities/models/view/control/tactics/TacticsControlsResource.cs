@@ -41,7 +41,7 @@ public partial class TacticsControlsResource : Resource
         { "Wait", "PlayerWantsToWait" },
         { "Cancel", "PlayerWantsToCancel" },
         { "Attack", "PlayerWantsToAttack" },
-        { "DebugNextTurn", "PLayerWantsToSkipTurn" },
+        { "DebugNextTurn", "PlayerWantsToSkipTurn" },
     };
 
     public void SetActionsMenuVisibilityHandler(bool v, TacticsPawn pawn)
