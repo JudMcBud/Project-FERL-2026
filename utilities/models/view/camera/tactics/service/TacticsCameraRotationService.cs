@@ -8,7 +8,7 @@ using Godot.Collections;
 public partial class TacticsCameraRotationService : RefCounted
 {
     public const int DeltaSmoothing = 10;
-    public const int MaxVertRotation = 20;
+    public const int MaxVertRotation = -20;
     public const int MinVertRotation = -45;
     public const int FreeLookRotationFactor = 2;
 
@@ -189,7 +189,7 @@ public partial class TacticsCameraRotationService : RefCounted
             .TweenProperty(
                 camera.tPivot,
                 "rotation_degrees",
-                targetRotation,
+                new Vector3(camera.tPivot.Rotation.X, targetRotation.Y, camera.tPivot.Rotation.Z),
                 resource.quadSnapDuration
             )
             .SetTrans(Tween.TransitionType.Sine);
@@ -198,7 +198,7 @@ public partial class TacticsCameraRotationService : RefCounted
             .TweenProperty(
                 camera.pPivot,
                 "rotation_degrees:x",
-                resource.zRotation,
+                TacticsCameraResource.xRotation,
                 resource.quadSnapDuration
             )
             .SetTrans(Tween.TransitionType.Sine);
