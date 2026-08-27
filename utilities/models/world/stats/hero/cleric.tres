@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://ducaha6i5h2tl"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_0ksqe"]
+
+[resource]
+script = ExtResource("1_0ksqe")
+overrideName = "Cleric Generic"
+expertise = "Cleric"
+strategy = 4
+sprite = "res://assets/textures/actor/character/chr_pawn_mage.png"
+jump = 2
+maxHealth = 35
+attackRange = 2
+attackPower = 10
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"

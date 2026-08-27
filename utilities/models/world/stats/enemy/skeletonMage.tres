@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatsResource" format=3 uid="uid://31uit1f6vd7g"]
+
+[ext_resource type="Script" uid="uid://1wkmi5j1lqp7" path="res://utilities/models/world/stats/StatsResource.cs" id="1_3umd7"]
+
+[resource]
+script = ExtResource("1_3umd7")
+overrideName = "Skeleton Mage Generic"
+expertise = "Skeleton Mage"
+strategy = 3
+sprite = "res://assets/textures/actor/mob/chr_pawn_skeleton_mage.png"
+maxHealth = 14
+attackRange = 2
+attackPower = 9
+metadata/_custom_type_script = "uid://1wkmi5j1lqp7"
