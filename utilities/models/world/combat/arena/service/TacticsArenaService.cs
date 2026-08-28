@@ -181,15 +181,22 @@ public partial class TacticsArenaService : RefCounted
         }
     }
 
-    public void MarkAttackableTiles(TacticsArena arena, TacticsTile root, float distance)
+    public void MarkAttackableTiles(
+        TacticsArena arena,
+        TacticsTile root,
+        float distance,
+        Array<Node> targetPawns
+    )
     {
         foreach (TacticsTile _t in arena.GetNode("Tiles").GetChildren())
         {
             bool _hasDist = _t.pfDistance > 0;
             bool _reachable = _t.pfDistance <= distance;
-            bool _isRoot = _t == root;
+            TacticsPawn _occupier = _t.GetTileOccupier() as TacticsPawn;
+            bool _isTarget =
+                _occupier != null && _occupier.IsAlive() && targetPawns.Contains(_occupier);
 
-            _t.attackable = (_hasDist && _reachable) || _isRoot;
+            _t.attackable = _hasDist && _reachable && _isTarget;
         }
     }
 }

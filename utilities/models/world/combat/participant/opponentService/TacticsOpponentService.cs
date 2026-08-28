@@ -89,13 +89,16 @@ public partial class TacticsOpponentService : RefCounted
     public void ChoosePawnToAttack()
     {
         arena.ResetAllTileMarkers();
+        Array<Node> targetPawns = resource.targets?.GetChildren() ?? [];
         arena.ProcessSurroundingTiles(
             resource.currentPawn.GetTile(),
-            resource.currentPawn.stats.attackRange
+            resource.currentPawn.stats.attackRange,
+            targetPawns
         );
         arena.MarkAttackableTiles(
             resource.currentPawn.GetTile(),
-            resource.currentPawn.stats.attackRange
+            resource.currentPawn.stats.attackRange,
+            targetPawns
         );
 
         resource.attackablePawn = arena.GetWeakestAttackablePawn(resource.targets.GetChildren());

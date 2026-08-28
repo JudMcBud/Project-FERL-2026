@@ -96,8 +96,9 @@ public partial class TacticsPlayerService : RefCounted
         resource.displayOpponentStats = true;
 
         camera.target = p;
-        arena.ProcessSurroundingTiles(p.GetTile(), p.stats.attackRange);
-        arena.MarkAttackableTiles(p.GetTile(), p.stats.attackRange);
+        Array<Node> targetPawns = resource.targets?.GetChildren() ?? [];
+        arena.ProcessSurroundingTiles(p.GetTile(), p.stats.attackRange, targetPawns);
+        arena.MarkAttackableTiles(p.GetTile(), p.stats.attackRange, targetPawns);
         resource.stage = TacticsParticipantResource.Stage.SelectAttackTarget;
     }
 
