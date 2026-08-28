@@ -67,8 +67,8 @@ public partial class TacticsArena : Node3D
         service.MarkReachableTiles(this, root, distance);
     }
 
-    public void MarkAttackableTiles(TacticsTile root, float distance)
+    public void MarkAttackableTiles(TacticsTile root, float distance, Array<Node> targetPawns)
     {
-        service.MarkAttackableTiles(this, root, distance);
+        service.MarkAttackableTiles(this, root, distance, targetPawns);
     }
 }

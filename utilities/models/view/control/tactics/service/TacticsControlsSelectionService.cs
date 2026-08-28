@@ -112,12 +112,23 @@ public partial class TacticsControlsSelectionService : RefCounted
         }
         TacticsTile tile = SelectHoveredTile(ctrl);
         participant.attackablePawn = tile != null ? tile.GetTileOccupier() as TacticsPawn : null;
+        bool validTarget =
+            tile != null
+            && tile.attackable
+            && participant.attackablePawn != null
+            && participant.targets != null
+            && participant.targets.GetChildren().Contains(participant.attackablePawn);
+        if (!validTarget)
+        {
+            participant.attackablePawn = null;
+            arena.OnMarkHoverTile(null);
+        }
         if (participant.attackablePawn != null)
         {
             controls.SetActionsMenuVisibilityHandler(true, participant.attackablePawn);
             participant.attackablePawn.ShowPawnStats(true);
         }
-        if (Input.IsActionJustPressed("ui_accept") && tile != null && tile.attackable)
+        if (Input.IsActionJustPressed("ui_accept") && tile != null && validTarget)
         {
             tCam.target = participant.attackablePawn;
             participant.stage = TacticsParticipantResource.Stage.Attack;

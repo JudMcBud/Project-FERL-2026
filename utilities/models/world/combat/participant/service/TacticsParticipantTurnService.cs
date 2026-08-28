@@ -25,6 +25,7 @@ public partial class TacticsParticipantTurnService : RefCounted
 
     public void HandlePlayerTurn(double delta, TacticsPlayer player, TacticsParticipant participant)
     {
+        resource.targets = participant.GetNode("%TacticsOpponent");
         if (resource.turnJustStarted)
         {
             Godot.Collections.Array<Node> playerChildren = player.GetChildren();
