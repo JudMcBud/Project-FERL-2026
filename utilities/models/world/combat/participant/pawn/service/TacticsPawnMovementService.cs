@@ -31,10 +31,13 @@ public partial class TacticsPawnMovementService : RefCounted
         {
             PerformMovement(pawn, delta);
 
-            // The way the distance is calculated here could cause some problems in the future
             TacticsTile _firstInTilestack = pawn.resource.pathfindingTilestack[0];
-            if (pawn.GlobalPosition.DistanceTo(_firstInTilestack.GlobalPosition) >= 0.15)
+            Vector3 _toTarget = _firstInTilestack.GlobalPosition - pawn.GlobalPosition;
+            bool _passedTarget = pawn.resource.moveDirection.Dot(_toTarget) <= 0;
+            if (_toTarget.Length() >= 0.15 && !_passedTarget)
                 return;
+
+            pawn.GlobalPosition = _firstInTilestack.GlobalPosition;
         }
 
         pawn.resource.pathfindingTilestack.RemoveAt(0);
