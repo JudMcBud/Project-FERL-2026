@@ -21,6 +21,7 @@ public partial class TacticsPawnCombatService : RefCounted
         {
             targetPawn.stats.ApplyToCurrentHealth(-pawn.stats.attackPower);
             pawn.resource.SetAttacking(false);
+            pawn.resource.EndPawnTurn();
         }
 
         if (pawn.resource.waitDelay < TacticsPawnResource.MinTimeForAttack)
