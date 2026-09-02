@@ -92,4 +92,12 @@ public partial class TacticsPawn : CharacterBody3D
     {
         service.movement.MoveAlongPath(this, delta);
     }
+
+    public void HandlePawnDeath()
+    {
+        if (!IsAlive())
+        {
+            QueueFree();
+        }
+    }
 }
