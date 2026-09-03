@@ -82,6 +82,7 @@ public partial class TacticsOpponentService : RefCounted
     {
         if (resource.currentPawn.resource.pathfindingTilestack.Count == 0)
         {
+            arena.ResetAllTileMarkers();
             resource.stage = TacticsParticipantResource.Stage.SelectLocation;
         }
     }
