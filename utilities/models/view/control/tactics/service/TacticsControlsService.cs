@@ -4,6 +4,7 @@ using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
+using Godot.Collections;
 
 public partial class TacticsControlsService : RefCounted
 {
@@ -65,10 +66,11 @@ public partial class TacticsControlsService : RefCounted
             GD.PushError("TacticsControls needs an ArenaResource from /models/world/combat/arena/");
     }
 
-    public void PhysicsProcess(double delta, TacticsControls ctrl)
+    public void PhysicsProcess(double delta, TacticsControls ctrl, Array<Node> labels)
     {
         inputService.UpdateMouseMode();
         uiService.UpdateControllerHints(ctrl);
+        pawnSelectionService.PhysicsProcess(ctrl, labels);
     }
 
     public void HandleInput(InputEvent e)

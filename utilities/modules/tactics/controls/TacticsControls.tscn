@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dk0bf7lcpdxgm" path="res://assets/textures/ui/labels/controlsHints/controls-ui-xbox.png" id="3_gcv75"]
 [ext_resource type="Resource" uid="uid://56hqeulqoi27" path="res://utilities/models/world/combat/participant/participant.tres" id="4_poeeo"]
 [ext_resource type="Resource" uid="uid://boseiifejvpjh" path="res://utilities/models/world/combat/arena/tacticsArenaResource.tres" id="5_g6xet"]
+[ext_resource type="LabelSettings" uid="uid://cyj8ve26nt08s" path="res://assets/fonts/TempLabelSettings.tres" id="7_poeeo"]
 
 [node name="TacticsControls" type="Control" unique_id=483806842]
 layout_mode = 3
@@ -24,6 +25,53 @@ participant = ExtResource("4_poeeo")
 arena = ExtResource("5_g6xet")
 
 [node name="InputCapture" parent="." unique_id=758626757 instance=ExtResource("2_gcv75")]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=719699015]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+
+[node name="StatsHBox" type="HBoxContainer" parent="MarginContainer" unique_id=1842690942]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Name" type="Label" parent="MarginContainer/StatsHBox" unique_id=264556738]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Name: ???"
+label_settings = ExtResource("7_poeeo")
+
+[node name="Health" type="Label" parent="MarginContainer/StatsHBox" unique_id=404209342]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Health: ??/??"
+label_settings = ExtResource("7_poeeo")
+
+[node name="Movement" type="Label" parent="MarginContainer/StatsHBox" unique_id=1307701293]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Movement: ?"
+label_settings = ExtResource("7_poeeo")
+
+[node name="Range" type="Label" parent="MarginContainer/StatsHBox" unique_id=1603390765]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Range: ?"
+label_settings = ExtResource("7_poeeo")
+
+[node name="Damage" type="Label" parent="MarginContainer/StatsHBox" unique_id=1005647519]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Damage: ??"
+label_settings = ExtResource("7_poeeo")
 
 [node name="Hints" type="Container" parent="." unique_id=1162797702]
 unique_name_in_owner = true
