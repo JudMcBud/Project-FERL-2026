@@ -30,7 +30,10 @@ public partial class TacticsControlsSelectionService : RefCounted
 
     public void PhysicsProcess(TacticsControls ctrl, Array<Node> labels)
     {
-        if (ctrl.currentPawn != null)
+        if (
+            ctrl.currentPawn != null
+            && participant.stage != TacticsParticipantResource.Stage.SelectPawn
+        )
             return;
         TacticsPawn _hoveredPawn = SelectHoveredPawn(ctrl);
         if (_hoveredPawn != null && labels.Count != 0)
