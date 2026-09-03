@@ -3,6 +3,7 @@ using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
+using Godot.Collections;
 
 public partial class TacticsControls : Control
 {
@@ -52,6 +53,8 @@ public partial class TacticsControls : Control
     );
 
     InputCapture inputCapture;
+
+    Array<Node> labels;
     #endregion
 
     #region --- Processing ---
@@ -82,11 +85,13 @@ public partial class TacticsControls : Control
             StringName stringName = controls.actions[action];
             GetAct(action).Pressed += () => Call(stringName);
         }
+
+        labels = GetNode<HBoxContainer>("%StatsHBox").GetChildren();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        service.PhysicsProcess(delta, this);
+        service.PhysicsProcess(delta, this, labels);
     }
 
     public override void _Input(InputEvent @event)

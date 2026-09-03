@@ -3,6 +3,7 @@ using Game.Models.View.Camera.Tactics.TacticsCameraResource;
 using Game.Models.View.Control.Tactics.TacticsControlsResource;
 using Game.Modules.Tactics.Level.Pawn.TacticsPawn;
 using Godot;
+using Godot.Collections;
 
 public partial class TacticsControlsSelectionService : RefCounted
 {
@@ -25,6 +26,46 @@ public partial class TacticsControlsSelectionService : RefCounted
         controls = _controls;
         tCam = _tCam;
         inputService = _inputService;
+    }
+
+    public void PhysicsProcess(TacticsControls ctrl, Array<Node> labels)
+    {
+        if (ctrl.currentPawn != null)
+            return;
+        TacticsPawn _hoveredPawn = SelectHoveredPawn(ctrl);
+        if (_hoveredPawn != null && labels.Count != 0)
+        {
+            foreach (Label label in labels)
+            {
+                label.Visible = true;
+                switch (label.Name)
+                {
+                    case "Name":
+                        label.Text = _hoveredPawn.stats.overrideName;
+                        break;
+                    case "Health":
+                        label.Text =
+                            $"Health: {_hoveredPawn.stats.currentHealth}/{_hoveredPawn.stats.maxHealth}";
+                        break;
+                    case "Movement":
+                        label.Text = $"Movement: {_hoveredPawn.stats.movement}";
+                        break;
+                    case "Range":
+                        label.Text = $"Range: {_hoveredPawn.stats.attackRange}";
+                        break;
+                    case "Damage":
+                        label.Text = $"Damage: {_hoveredPawn.stats.attackPower}";
+                        break;
+                }
+            }
+        }
+        else
+        {
+            foreach (Label label in labels)
+            {
+                label.Visible = false;
+            }
+        }
     }
 
     public void SelectPawn(TacticsPlayer player, TacticsControls ctrl)
