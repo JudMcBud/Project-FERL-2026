@@ -12,3 +12,4 @@ Project FERL 2026.csproj
 .gitattributes
 *.png
 *.import
+/unimported
