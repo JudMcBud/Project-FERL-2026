@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://bgajm4vnb8awu"]
+
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="1_4qqrb"]
+[ext_resource type="PackedScene" uid="uid://clne8cl5a5xxi" path="res://assets/dialogue/5Portraits/custom_5_portraits.tscn" id="2_6sxvp"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="2_udjwy"]
+[ext_resource type="PackedScene" uid="uid://cbv3emxo8g76a" path="res://assets/dialogue/VisualNovelTextbox/custom_visual_novel_textbox.tscn" id="3_6sxvp"]
+
+[sub_resource type="Resource" id="Resource_6sxvp"]
+script = ExtResource("1_4qqrb")
+
+[sub_resource type="Resource" id="Resource_o3d8p"]
+script = ExtResource("1_4qqrb")
+scene = ExtResource("2_6sxvp")
+
+[sub_resource type="Resource" id="Resource_5tmsb"]
+script = ExtResource("1_4qqrb")
+scene = ExtResource("3_6sxvp")
+
+[resource]
+script = ExtResource("2_udjwy")
+name = "VNLayoutStyle"
+layer_list = Array[String](["10", "11"])
+layer_info = {
+"": SubResource("Resource_6sxvp"),
+"10": SubResource("Resource_o3d8p"),
+"11": SubResource("Resource_5tmsb")
+}
+metadata/_latest_layer = "11"

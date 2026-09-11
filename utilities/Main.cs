@@ -8,15 +8,22 @@ public partial class Main : Node3D
     private Node3D world;
 
     private Button demoMapButton;
+    private Button testDialogueButton;
+    private TacticsControls tacticsControls;
     #endregion
 
     #region --- Processing ---
     public override void _Ready()
     {
+        tacticsControls = GetNode<TacticsControls>("TacticsControls");
+        tacticsControls.Visible = false;
         world = GetNode<Node3D>("World");
-        demoMapButton = GetNode<Button>("UI/MapSelector/LoadMap0");
+        demoMapButton = GetNode<Button>("UI/MapSelector/VBoxContainer/LoadMap0");
         demoMapButton.Pressed += OnDemoMapButtonPressed;
         demoMapButton.GrabFocus();
+
+        testDialogueButton = GetNode<Button>("UI/MapSelector/VBoxContainer/LoadMap1");
+        testDialogueButton.Pressed += OnTestDialogueButtonPressed;
     }
     #endregion
 
@@ -24,6 +31,11 @@ public partial class Main : Node3D
     private void OnDemoMapButtonPressed()
     {
         LoadLevel("TestLevel");
+    }
+
+    private void OnTestDialogueButtonPressed()
+    {
+        LoadDialogue();
     }
     #endregion
 
@@ -37,6 +49,20 @@ public partial class Main : Node3D
         levelInstance = GD.Load<PackedScene>(levelPath).Instantiate<TacticsLevel>();
         // GD.Print("levelInstance Loaded");
         world.AddChild(levelInstance);
+        // GD.Print("levelInstance Added to world");
+        GetNode<CenterContainer>("UI/MapSelector").Visible = false;
+        // GD.Print("Button hidden");
+    }
+
+    private void LoadDialogue()
+    {
+        // GD.Print("Begin Load Level");
+        UnloadLevel();
+        // GD.Print("Level Unloaded");
+        string levelPath = $"res://utilities/modules/dialogue/Dialogue.tscn";
+        Node3D dialogueInstance = GD.Load<PackedScene>(levelPath).Instantiate<Node3D>();
+        // GD.Print("levelInstance Loaded");
+        world.AddChild(dialogueInstance);
         // GD.Print("levelInstance Added to world");
         GetNode<CenterContainer>("UI/MapSelector").Visible = false;
         // GD.Print("Button hidden");

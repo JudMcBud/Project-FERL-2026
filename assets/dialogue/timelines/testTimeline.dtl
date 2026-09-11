@@ -1,0 +1,6 @@
+[style name="VNLayoutStyle"]
+join testCharacter left [animation="Slide From Left"]
+[voice path="res://assets/audio/dialogue/testDialogue/testDialogue.wav" volume="0.0"]
+testCharacter: This is a test dialogue scene.
+[voice path="res://assets/audio/dialogue/testDialogue/secondSentence.wav" volume="0.0"]
+testCharacter: Second sentence.
