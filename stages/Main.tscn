@@ -28,9 +28,16 @@ anchor_bottom = 1.0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LoadMap0" type="Button" parent="UI/MapSelector" unique_id=1625502611]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MapSelector" unique_id=61063573]
+layout_mode = 2
+
+[node name="LoadMap0" type="Button" parent="UI/MapSelector/VBoxContainer" unique_id=1625502611]
 layout_mode = 2
 text = "Test Level"
+
+[node name="LoadMap1" type="Button" parent="UI/MapSelector/VBoxContainer" unique_id=721469821]
+layout_mode = 2
+text = "Test Dialogue"
 
 [node name="TacticsControls" parent="." unique_id=483806842 instance=ExtResource("3_uc6bj")]
 
