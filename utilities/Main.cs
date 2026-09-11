@@ -51,6 +51,7 @@ public partial class Main : Node3D
         world.AddChild(levelInstance);
         // GD.Print("levelInstance Added to world");
         GetNode<CenterContainer>("UI/MapSelector").Visible = false;
+        tacticsControls.Visible = true;
         // GD.Print("Button hidden");
     }
 
